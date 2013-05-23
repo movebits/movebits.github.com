@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Useful Rails Concepts</title>
+    <meta name="description" content="">
+    <meta name="author" content="Movebits">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <!-- syntax highlighting CSS -->
+    
+    <link href="/assets/themes/twitter/css/syntax.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div style="display: none">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">Movebits</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>Useful Rails Concepts </h1>
+</div>
+
+<div class="row-fluid post-full">
+  <div class="span12">
+    <div class="date">
+      <span>23 May 2013</span>
+    </div>
+    <div class="content">
+      <h2 id='rails_api__slide_3'>Rails API - Slide 3</h2>
+
+<h3 id='rails_api'>Rails API</h3>
+
+<p><a href='https://github.com/rails-api/rails-api'>https://github.com/rails-api/rails-api</a></p>
+
+<p>For new apps - Install the gem if you haven&#8217;t already:</p>
+
+<pre><code>gem install rails-api</code></pre>
+
+<p>Then generate a new <code>Rails::API</code> app:</p>
+
+<pre><code>rails-api new my_api</code></pre>
+
+<h3 id='ams__active_model_serializers'>AMS - Active Model Serializers</h3>
+
+<p><a href='https://github.com/rails-api/active_model_serializers'>https://github.com/rails-api/active_model_serializers</a></p>
+
+<p>The easiest way to create a new serializer is to generate a new resource, which will generate a serializer at the same time:</p>
+
+<pre><code>rails g resource post title:string body:string</code></pre>
+
+<p>This will generate a serializer in <code>app/serializers/post_serializer.rb</code> for your new model. You can also generate a serializer for an existing model with the serializer generator:</p>
+
+<pre><code>rails g serializer post</code></pre>
+
+<p>Example of created serializer:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>class</span> <span class='nc'>PostSerializer</span> <span class='o'>&lt;</span> <span class='ss'>ActiveModel</span><span class='p'>:</span><span class='ss'>:Serializer</span>
+  <span class='n'>attributes</span> <span class='ss'>:id</span><span class='p'>,</span> <span class='ss'>:title</span><span class='p'>,</span> <span class='ss'>:string</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>Navigating to the URL <code>localhost/posts</code> would then render a <code>JSON</code> string response. The <code>rails g resource</code> command would already have created an entry in <code>routes.rb</code> to include the posts resource, as such allowing <code>index</code> access, rendering posts.json.</p>
+
+<h3 id='api_access_tokens'>API access, Tokens</h3>
+
+<p>to wrap an API, include in <code>routes.rb</code>, for example using the <code>products</code> resource:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>namespace</span> <span class='ss'>:api</span> <span class='k'>do</span>
+  <span class='n'>namespace</span> <span class='ss'>:v1</span> <span class='k'>do</span>
+    <span class='n'>resources</span> <span class='ss'>:products</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>then create a controller in <code>api/v1/products_controller</code>, where the <code>before_filter :restric_access</code> calls the token authentication, which is an API table cotaining a row with the SHA1 hash. If you navigate to <code>localhost/api/v1/products.json&amp;</code></p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>module</span> <span class='nn'>Api</span>
+  <span class='k'>module</span> <span class='nn'>V1</span>
+    <span class='k'>class</span> <span class='nc'>ProductsController</span> <span class='o'>&lt;</span> <span class='no'>ApplicationController</span>
+      <span class='n'>before_filter</span> <span class='ss'>:restrict_access</span>
+      <span class='n'>skip_before_filter</span> <span class='ss'>:require_login</span><span class='p'>,</span> <span class='ss'>:only</span> <span class='o'>=&gt;</span> <span class='o'>[</span><span class='ss'>:index</span><span class='p'>,</span> <span class='ss'>:show</span><span class='o'>]</span>
+      <span class='n'>respond_to</span> <span class='ss'>:json</span>
+      <span class='n'>caches_action</span> <span class='ss'>:index</span><span class='p'>,</span> <span class='ss'>:show</span>
+      
+      <span class='k'>def</span> <span class='nf'>index</span>
+        
+        <span class='vi'>@products</span> <span class='o'>=</span> <span class='no'>Product</span><span class='o'>.</span><span class='n'>all</span>
+
+        <span class='n'>respond_to</span> <span class='k'>do</span> <span class='o'>|</span><span class='nb'>format</span><span class='o'>|</span>
+          
+          <span class='nb'>format</span><span class='o'>.</span><span class='n'>json</span> <span class='p'>{</span> <span class='n'>render</span> <span class='ss'>json</span><span class='p'>:</span> <span class='vi'>@products</span><span class='p'>,</span> <span class='ss'>:only</span> <span class='o'>=&gt;</span> <span class='o'>[</span><span class='ss'>:id</span><span class='p'>,</span> <span class='ss'>:level</span><span class='p'>,</span> <span class='ss'>:condo_no</span><span class='p'>,</span> <span class='ss'>:sales_no</span><span class='p'>,</span> <span class='ss'>:sqr_ft</span><span class='p'>,</span> <span class='ss'>:schedule_b</span><span class='p'>,</span> <span class='ss'>:seating</span><span class='p'>,</span> <span class='ss'>:restaurant</span><span class='p'>,</span> <span class='ss'>:hair</span><span class='p'>,</span> <span class='ss'>:food</span><span class='p'>,</span> <span class='ss'>:herbs_dsf</span><span class='p'>,</span> <span class='ss'>:pets</span><span class='p'>,</span> <span class='ss'>:extended_hours</span><span class='p'>,</span> <span class='ss'>:standard_hours</span><span class='p'>,</span> <span class='ss'>:category_txt</span><span class='p'>,</span> <span class='ss'>:availability</span><span class='p'>,</span> <span class='ss'>:price</span><span class='p'>,</span> <span class='ss'>:notes</span><span class='o'>]</span> <span class='p'>}</span>
+        <span class='k'>end</span>
+        <span class='ss'>ActiveRecord</span><span class='p'>:</span><span class='ss'>:Base</span><span class='o'>.</span><span class='n'>include_root_in_json</span> <span class='o'>=</span> <span class='kp'>false</span>
+      <span class='k'>end</span>
+      
+      <span class='k'>def</span> <span class='nf'>show</span>
+        <span class='vi'>@product</span> <span class='o'>=</span> <span class='no'>Product</span><span class='o'>.</span><span class='n'>find</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='ss'>:id</span><span class='o'>]</span><span class='p'>)</span>
+
+        <span class='n'>respond_to</span> <span class='k'>do</span> <span class='o'>|</span><span class='nb'>format</span><span class='o'>|</span>
+
+          <span class='nb'>format</span><span class='o'>.</span><span class='n'>json</span> <span class='p'>{</span> <span class='n'>render</span> <span class='ss'>json</span><span class='p'>:</span> <span class='vi'>@product</span><span class='p'>,</span> <span class='ss'>:only</span> <span class='o'>=&gt;</span> <span class='o'>[</span><span class='ss'>:id</span><span class='p'>,</span> <span class='ss'>:level</span><span class='p'>,</span> <span class='ss'>:condo_no</span><span class='p'>,</span> <span class='ss'>:sales_no</span><span class='p'>,</span> <span class='ss'>:sqr_ft</span><span class='p'>,</span> <span class='ss'>:schedule_b</span><span class='p'>,</span> <span class='ss'>:seating</span><span class='p'>,</span> <span class='ss'>:restaurant</span><span class='p'>,</span> <span class='ss'>:hair</span><span class='p'>,</span> <span class='ss'>:food</span><span class='p'>,</span> <span class='ss'>:herbs_dsf</span><span class='p'>,</span> <span class='ss'>:pets</span><span class='p'>,</span> <span class='ss'>:extended_hours</span><span class='p'>,</span> <span class='ss'>:standard_hours</span><span class='p'>,</span> <span class='ss'>:category_txt</span><span class='p'>,</span> <span class='ss'>:availability</span><span class='p'>,</span> <span class='ss'>:price</span><span class='p'>,</span> <span class='ss'>:notes</span><span class='o'>]</span> <span class='p'>}</span>
+        <span class='k'>end</span>
+
+        <span class='ss'>ActiveRecord</span><span class='p'>:</span><span class='ss'>:Base</span><span class='o'>.</span><span class='n'>include_root_in_json</span> <span class='o'>=</span> <span class='kp'>false</span>
+      <span class='k'>end</span>
+
+      <span class='k'>def</span> <span class='nf'>restrict_access</span>
+        <span class='n'>api_key</span> <span class='o'>=</span> <span class='no'>ApiKey</span><span class='o'>.</span><span class='n'>find_by_access_token</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='ss'>:access_token</span><span class='o'>]</span><span class='p'>)</span>
+        <span class='n'>head</span> <span class='ss'>:unauthorized</span> <span class='k'>unless</span> <span class='n'>api_key</span>
+      <span class='k'>end</span>
+
+      <span class='k'>def</span> <span class='nf'>restrict_access2</span>
+        <span class='n'>authenticate_or_request_with_http_token</span> <span class='k'>do</span> <span class='o'>|</span><span class='n'>token</span><span class='p'>,</span> <span class='n'>options</span><span class='o'>|</span>
+          <span class='no'>ApiKey</span><span class='o'>.</span><span class='n'>exists?</span><span class='p'>(</span><span class='n'>access_token</span><span class='p'>:</span> <span class='n'>token</span><span class='p'>)</span>
+        <span class='k'>end</span>
+      <span class='k'>end</span>
+      
+      
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>For token based access - Railscasts episode <code>#352</code> is helpful <a href='http://railscasts.com/episodes/352-securing-an-api?view=asciicast'>http://railscasts.com/episodes/352-securing-an-api?view=asciicast</a></p>
+
+<h3 id='security_strong_params_whitelisting'>Security, Strong Params, whitelisting</h3>
+
+<p>By default Rails now creates whitelisted accessors in models to control access to attributes. Previously, a security hole was discovered that allowed a malicious web app to send updates to attributes (Mass Assignment) through the helper methods <code>update_attributes</code> and <code>new</code>.</p>
+
+<p>Example of previously unsafe <code>update_attributes</code> method in controller method <code>update</code>:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>update</span>
+  <span class='vi'>@order</span> <span class='o'>=</span> <span class='no'>Order</span><span class='o'>.</span><span class='n'>find</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='ss'>:id</span><span class='o'>]</span><span class='p'>)</span>
+
+  <span class='n'>respond_to</span> <span class='k'>do</span> <span class='o'>|</span><span class='nb'>format</span><span class='o'>|</span>
+    <span class='k'>if</span> <span class='vi'>@order</span><span class='o'>.</span><span class='n'>update_attributes</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='ss'>:order</span><span class='o'>]</span><span class='p'>)</span>
+      <span class='nb'>format</span><span class='o'>.</span><span class='n'>html</span> <span class='p'>{</span> <span class='n'>redirect_to</span> <span class='vi'>@order</span><span class='p'>,</span> <span class='ss'>notice</span><span class='p'>:</span> <span class='s1'>&#39;Order was successfully updated.&#39;</span> <span class='p'>}</span>
+      <span class='nb'>format</span><span class='o'>.</span><span class='n'>json</span> <span class='p'>{</span> <span class='n'>head</span> <span class='ss'>:no_content</span> <span class='p'>}</span>
+    <span class='k'>else</span>
+      <span class='nb'>format</span><span class='o'>.</span><span class='n'>html</span> <span class='p'>{</span> <span class='n'>render</span> <span class='ss'>action</span><span class='p'>:</span> <span class='s2'>&quot;edit&quot;</span> <span class='p'>}</span>
+      <span class='nb'>format</span><span class='o'>.</span><span class='n'>json</span> <span class='p'>{</span> <span class='n'>render</span> <span class='ss'>json</span><span class='p'>:</span> <span class='vi'>@order</span><span class='o'>.</span><span class='n'>errors</span><span class='p'>,</span> <span class='ss'>status</span><span class='p'>:</span> <span class='ss'>:unprocessable_entity</span> <span class='p'>}</span>
+    <span class='k'>end</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>See also <code>Rails Guides</code> Security Article on Mass Assignment - <a href='http://guides.rubyonrails.org/security.html#mass-assignment'>http://guides.rubyonrails.org/security.html#mass-assignment</a></p>
+
+<pre><code>Without any precautions Model.new(params[:model]) would allow attackers to set any database 
+column’s value.</code></pre>
+
+<p>The mass-assignment feature may become a problem, as it allows an attacker to set any model’s attributes by manipulating the hash passed to a model’s new() method:</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>signup</span>
+  <span class='n'>params</span><span class='o'>[</span><span class='ss'>:user</span><span class='o'>]</span> <span class='c1'># =&gt; {:name =&gt; “ow3ned”, :admin =&gt; true}</span>
+  <span class='vi'>@user</span> <span class='o'>=</span> <span class='no'>User</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='n'>params</span><span class='o'>[</span><span class='ss'>:user</span><span class='o'>]</span><span class='p'>)</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>Mass-assignment allows passing in a hash to the <code>new</code> method, or <code>assign_attributes=</code> to set the model’s attributes to the values in the hash. It is often used with the parameters (params) hash available in controller, which may be used with malicious intent. Changing URL example:</p>
+
+<p>Simple <code>GET</code> request <code>http://www.example.com/user/signup?user[name]=ow3ned&amp;user[admin]=1</code></p>
+
+<p>It&#8217;s worth reading the Rails security Guide - <a href='http://guides.rubyonrails.org/security.html'>http://guides.rubyonrails.org/security.html</a></p>
+
+<p>Example of whitelisting params in model - is generated automatically upon resource creation (e.g. <code>rails g resource ProductDetail ProductID:string ProductName:string :ProductUPCCode:string</code>) or scaffold creation (replace <code>resource</code> in generate command with <code>scaffold</code> if one needs HTML views):</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>class</span> <span class='nc'>ProductDetail</span> <span class='o'>&lt;</span> <span class='ss'>ActiveRecord</span><span class='p'>:</span><span class='ss'>:Base</span>
+  <span class='n'>attr_accessible</span> <span class='ss'>:ProductId</span><span class='p'>,</span> <span class='ss'>:ProductName</span><span class='p'>,</span> <span class='ss'>:ProductUPCCode</span>
+<span class='k'>end</span>
+</code></pre></div>
+<h2 id='routes__slide_12'>Routes - Slide 12</h2>
+
+<h3 id='routes'>Routes</h3>
+
+<h3 id='route_nesting'>Route nesting</h3>
+
+<h3 id='rake_routes'>rake routes</h3>
+
+<h3 id='nested_routes_blog_example'>Nested routes Blog example</h3>
+
+<h2 id='spa_single_page_apps__slide_4'>SPA Single Page Apps - Slide 4</h2>
+
+<h3 id='example_of_standard_jquery_ajax_use_in_rails'>Example of Standard jQuery/ Ajax use in Rails</h3>
+
+<h4 id='standard_get_request'>Standard GET Request</h4>
+
+<h3 id='emberjs'>Ember.js</h3>
+
+<h3 id='angularjs'>Angular.js</h3>
+
+<h2 id='rails_console__slide_8'>Rails Console - Slide 8</h2>
+
+<h3 id='console'>console</h3>
+
+<h3 id='pry'>Pry</h3>
+
+<h2 id='admins__rails_admin_active_admin_netzke__slide_19'>Admins - Rails Admin, Active Admin, Netzke - Slide 19</h2>
+
+<h3 id='rais_admin'>Rais Admin</h3>
+
+<h3 id='active_admin'>Active Admin</h3>
+
+<h3 id='netzke'>Netzke</h3>
+
+<h2 id='authentication_authorization__slide_5'>Authentication, Authorization - Slide 5</h2>
+
+<h3 id='autentication__devise_sorcery'>Autentication - Devise, Sorcery</h3>
+
+<h3 id='authorization__cancan_example'>Authorization - CanCan Example</h3>
+
+<h2 id='active_record_finder__slide_7'>Active Record Finder - Slide 7</h2>
+
+<h3 id='where'>Where</h3>
+
+<h3 id='arel__nested_scopes'>Arel - nested scopes</h3>
+
+<h3 id='search_scopes_devmynd_article'>Search scopes (Devmynd Article)</h3>
+
+<h2 id='active_record_associations__slide_10'>Active Record Associations - Slide 10</h2>
+
+<h3 id='various'>various</h3>
+
+<h2 id='storing_flexible_data_nosql__slide_11'>Storing Flexible Data, NoSQL - Slide 11</h2>
+
+<h3 id='various'>various</h3>
+
+<h3 id='mongodb__no_transactions'>MongoDB - no transactions</h3>
+
+<h3 id='postgresql_93__fdw_integrating_redis_mongodb'>Postgresql 9.3 - FDW (integrating Redis, MongoDB)</h3>
+
+<h3 id='postgresql_new_features'>PostGresql new features</h3>
+
+<h2 id='rails_asset_pipeline_twitter_bootstrap_framework__slide_17'>Rails Asset Pipeline, Twitter Bootstrap Framework - Slide 17</h2>
+
+<h3 id='asset_pipeline'>Asset Pipeline</h3>
+
+<h3 id='integrating_bootstrap_less_sass'>Integrating Bootstrap, Less, SASS</h3>
+
+<h2 id='handling_data_csv_excel_pdf_generation__slide_16'>Handling Data, CSV, Excel, PDF generation - Slide 16</h2>
+
+<h3 id='csv'>CSV</h3>
+
+<h3 id='csv_upload'>CSV upload</h3>
+
+<h3 id='pdf_generation'>PDF generation</h3>
+
+<h1 id='the_end'>The End</h1>
+    </div>
+
+    
+
+    
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="/work/2013/01/01/jekyll-example-page" title="Jekyll Example Page">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next disabled"><a>Next &rarr;</a>
+      
+      </ul>
+    </div>
+    <hr>
+    
+    
+ 
+  </div>
+</div>
+
+
+      </div>
+      <hr>
+      <footer>
+        <p>&copy; 2013 Movebits. 
+          Published with <a href="http://jekyllrb.com" target="_blank" title="Jekyll Blogging Framework">Jekyll</a>.
+        </p>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
+
