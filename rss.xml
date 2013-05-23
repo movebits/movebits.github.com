@@ -5,14 +5,16 @@
         <description>Movebits - Movebits</description>
         <link>http://movebits.github.io</link>
         <link>http://movebits.github.io</link>
-        <lastBuildDate>2013-05-23T16:50:48-04:00</lastBuildDate>
-        <pubDate>2013-05-23T16:50:48-04:00</pubDate>
+        <lastBuildDate>2013-05-23T17:08:33-04:00</lastBuildDate>
+        <pubDate>2013-05-23T17:08:33-04:00</pubDate>
         <ttl>1800</ttl>
 
 
         <item>
                 <title>Useful Rails Concepts</title>
-                <description>&lt;h2 id='rails_api__slide_3'&gt;Rails API - Slide 3&lt;/h2&gt;
+                <description>&lt;p&gt;referring to Slide Presentation (Slide Numbers) see PDF - &lt;a href='/assets/useful-rails-concepts-slides.pdf'&gt;useful-rails-concepts-slides.pdf&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id='rails_api__slide_3'&gt;Rails API - Slide 3&lt;/h2&gt;
 
 &lt;h3 id='rails_api'&gt;Rails API&lt;/h3&gt;
 
@@ -54,7 +56,7 @@
   &lt;span class='k'&gt;end&lt;/span&gt;
 &lt;span class='k'&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;then create a controller in &lt;code&gt;api/v1/products_controller&lt;/code&gt;, where the &lt;code&gt;before_filter :restric_access&lt;/code&gt; calls the token authentication, which is an API table cotaining a row with the SHA1 hash. If you navigate to &lt;code&gt;localhost/api/v1/products.json&amp;amp;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;then create a controller in &lt;code&gt;api/v1/products_controller&lt;/code&gt;, where the &lt;code&gt;before_filter :restric_access&lt;/code&gt; calls the token authentication, which is an API table cotaining a row with the SHA1 hash. If you navigate to e.g. &lt;code&gt;localhost/api/v1/products.json?access_token=1234d607b688b43841f1c6ccfe57a69e&lt;/code&gt;&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='k'&gt;module&lt;/span&gt; &lt;span class='nn'&gt;Api&lt;/span&gt;
   &lt;span class='k'&gt;module&lt;/span&gt; &lt;span class='nn'&gt;V1&lt;/span&gt;
     &lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;ProductsController&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='no'&gt;ApplicationController&lt;/span&gt;
@@ -221,8 +223,8 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id='pdf_generation'&gt;PDF generation&lt;/h3&gt;
 
 &lt;h1 id='the_end'&gt;The End&lt;/h1&gt;</description>
-                <link>http://movebits.github.io/2013/05/23/useful-rails-concepts</link>
-                <guid>http://movebits.github.io/2013/05/23/useful-rails-concepts</guid>
+                <link>http://movebits.github.io/rails/2013/05/23/useful-rails-concepts</link>
+                <guid>http://movebits.github.io/rails/2013/05/23/useful-rails-concepts</guid>
                 <pubDate>2013-05-23T00:00:00-04:00</pubDate>
         </item>
 
