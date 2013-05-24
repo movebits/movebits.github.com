@@ -273,7 +273,7 @@ column’s value.</code></pre>
   <span class='n'>resources</span> <span class='ss'>:comments</span>
 <span class='k'>end</span>
 </code></pre></div>
-<p>There is an article by Jamis Buck (37 Signals) about not nesting routes deeply - see <a href='http://weblog.jamisbuck.org/2007/2/5/nesting-resources'>http://weblog.jamisbuck.org/2007/2/5/nesting-resources</a>. See also Rails Guides routing - <a href='http://guides.rubyonrails.org/routing.html'>http://guides.rubyonrails.org/routing.html</a></p>
+<p>There is an article by Jamis Buck (37 Signals) about avoiding deeply nested routes - see <a href='http://weblog.jamisbuck.org/2007/2/5/nesting-resources'>http://weblog.jamisbuck.org/2007/2/5/nesting-resources</a>. See also Rails Guides routing - <a href='http://guides.rubyonrails.org/routing.html'>http://guides.rubyonrails.org/routing.html</a></p>
 
 <p>Specifically <a href='http://guides.rubyonrails.org/routing.html#crud-verbs-and-actions'>http://guides.rubyonrails.org/routing.html#crud-verbs-and-actions</a> e.g. <code>resources :photos</code> command creates 7 different routes on the Photos controller:</p>
 <table>
@@ -328,7 +328,7 @@ column’s value.</code></pre>
 </tbody></table>
 <h3 id='rake_routes'>rake routes</h3>
 
-<p><code>rake routes</code> command shows all available routes and their named paths, which can be used to e.g. generate link helpers <code>edit_post_comment</code> refers and generates the route <code>GET    /posts/:post_id/comments/:id/edit(.:format)</code>:</p>
+<p><code>rake routes</code> command shows all available routes and their named paths, which can be used to e.g. generate link helpers. <code>edit_post_comment</code> refers and generates the route <code>GET    /posts/:post_id/comments/:id/edit(.:format)</code>:</p>
 
 <pre><code>             blog_posts GET    /blogs/:blog_id/posts(.:format)             {:action=&gt;&quot;index&quot;, :controller=&gt;&quot;posts&quot;}
                         POST   /blogs/:blog_id/posts(.:format)             {:action=&gt;&quot;create&quot;, :controller=&gt;&quot;posts&quot;}
@@ -618,12 +618,12 @@ column’s value.</code></pre>
 
 <span class='k'>end</span>
 </code></pre></div>
-<p>The in <code>user.rb</code> model you create the helper method <code>role?</code> which helps pass in associated Role table pulling out all the associated roles (many-to-one relationship between User and Role), which <code>ability.rb</code> then pull in with the <code>initialize</code> method on demand for each user, referring to each&#8217;s abilities (picking them up from the methods below e.g. <code>def management</code> <code>def staff</code> etc.).</p>
+<p>In <code>user.rb</code> model you create the helper method <code>role?</code>, which helps pass in the associated Role table by collecting the roles (many-to-one relationship between User and Role), which <code>ability.rb</code> then pulls in with the <code>initialize</code> method on demand for each user (referring to each&#8217;s abilities from the methods below using <code>send()</code> e.g. <code>def management</code> <code>def staff</code> etc.).</p>
 <div class='highlight'><pre><code class='ruby'> <span class='k'>def</span> <span class='nf'>role?</span><span class='p'>(</span><span class='n'>role</span><span class='p'>)</span>
     <span class='n'>roles</span><span class='o'>.</span><span class='n'>map</span> <span class='p'>{</span><span class='o'>|</span><span class='n'>s</span><span class='o'>|</span> <span class='n'>s</span><span class='o'>.</span><span class='n'>name</span><span class='p'>}</span><span class='o'>.</span><span class='n'>include?</span> <span class='n'>role</span><span class='o'>.</span><span class='n'>to_s</span>
   <span class='k'>end</span>
 </code></pre></div>
-<p>Finally (taken from Railscast Article) if you refer (with logged in user) with the <code>can?</code> helper method in views to the abilities of the user, it filters out what is allowed (CanCan automatically creates this ability on the controllers already):</p>
+<p>Finally (taken from Railscast Article), if you refer (with logged in user) with the <code>can?</code> helper method in views to the abilities of the user, it filters out what is allowed (CanCan automatically creates this ability on the controllers already):</p>
 <div class='highlight'><pre><code class='html'><span class='nt'>&lt;p&gt;</span>
   <span class='err'>&lt;</span>% if can? :update, @article %&gt;
     <span class='err'>&lt;</span>%= link_to &quot;Edit&quot;, edit_article_path(@article) %&gt; |
