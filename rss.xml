@@ -5,8 +5,8 @@
         <description>Movebits - Movebits</description>
         <link>http://movebits.github.io</link>
         <link>http://movebits.github.io</link>
-        <lastBuildDate>2013-05-24T09:16:48-04:00</lastBuildDate>
-        <pubDate>2013-05-24T09:16:48-04:00</pubDate>
+        <lastBuildDate>2013-05-24T09:30:53-04:00</lastBuildDate>
+        <pubDate>2013-05-24T09:30:53-04:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -270,7 +270,7 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;img alt='selector widget' src='/assets/get_tracks.png' /&gt;&lt;/p&gt;
 
-&lt;p&gt;Html page includes a selector box, where jQuery code references their 2 id fields &lt;code&gt;categories&lt;/code&gt; and &lt;code&gt;sort&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Html page includes two selectors and a link (action), where jQuery code references their two id fields &lt;code&gt;categories&lt;/code&gt; and &lt;code&gt;sort&lt;/code&gt; in the event of &lt;code&gt;click&lt;/code&gt;, binding events to these id&amp;#8217;s with jQuery&amp;#8217;s &lt;code&gt;live&lt;/code&gt; capture (one could just use the &lt;code&gt;click&lt;/code&gt; event, but then it would not pick up changes from both selectors):&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='nx'&gt;script&lt;/span&gt; &lt;span class='nx'&gt;type&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;&amp;gt;&lt;/span&gt;
 
     &lt;span class='nx'&gt;jQuery&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;

@@ -378,7 +378,7 @@ column’s value.</code></pre>
 
 <p><img alt='selector widget' src='/assets/get_tracks.png' /></p>
 
-<p>Html page includes a selector box, where jQuery code references their 2 id fields <code>categories</code> and <code>sort</code>:</p>
+<p>Html page includes two selectors and a link (action), where jQuery code references their two id fields <code>categories</code> and <code>sort</code> in the event of <code>click</code>, binding events to these id&#8217;s with jQuery&#8217;s <code>live</code> capture (one could just use the <code>click</code> event, but then it would not pick up changes from both selectors):</p>
 <div class='highlight'><pre><code class='javascript'><span class='o'>&lt;</span><span class='nx'>script</span> <span class='nx'>type</span><span class='o'>=</span><span class='s2'>&quot;text/javascript&quot;</span><span class='o'>&gt;</span>
 
     <span class='nx'>jQuery</span><span class='p'>(</span><span class='kd'>function</span><span class='p'>(</span><span class='nx'>$</span><span class='p'>)</span> <span class='p'>{</span>
