@@ -392,7 +392,7 @@ column’s value.</code></pre>
 
 <span class='o'>&lt;</span><span class='err'>/script&gt;</span>
 </code></pre></div>
-<p>Then in the <code>home_controller</code> <code>articles</code> method, we refer to an articles.js <code>articles.js.erb</code> file, which has the same name as the <code>articles</code> method (we could call it something else but would have to specify the name in the <code>respond_to</code> block):</p>
+<p>Then in the <code>home_controller</code> <code>articles</code> method we refer to an articles.js <code>articles.js.erb</code> file, which has the same name as the <code>articles</code> method (we could call it something else but would have to specify the name in the <code>respond_to</code> block):</p>
 <div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>articles</span>
 
   <span class='n'>category_selected</span> <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:cat</span><span class='o'>]</span>

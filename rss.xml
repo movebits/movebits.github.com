@@ -5,8 +5,8 @@
         <description>Movebits - Movebits</description>
         <link>http://movebits.github.io</link>
         <link>http://movebits.github.io</link>
-        <lastBuildDate>2013-05-24T09:32:01-04:00</lastBuildDate>
-        <pubDate>2013-05-24T09:32:01-04:00</pubDate>
+        <lastBuildDate>2013-05-24T09:33:18-04:00</lastBuildDate>
+        <pubDate>2013-05-24T09:33:18-04:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -284,7 +284,7 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='err'&gt;/script&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Then in the &lt;code&gt;home_controller&lt;/code&gt; &lt;code&gt;articles&lt;/code&gt; method, we refer to an articles.js &lt;code&gt;articles.js.erb&lt;/code&gt; file, which has the same name as the &lt;code&gt;articles&lt;/code&gt; method (we could call it something else but would have to specify the name in the &lt;code&gt;respond_to&lt;/code&gt; block):&lt;/p&gt;
+&lt;p&gt;Then in the &lt;code&gt;home_controller&lt;/code&gt; &lt;code&gt;articles&lt;/code&gt; method we refer to an articles.js &lt;code&gt;articles.js.erb&lt;/code&gt; file, which has the same name as the &lt;code&gt;articles&lt;/code&gt; method (we could call it something else but would have to specify the name in the &lt;code&gt;respond_to&lt;/code&gt; block):&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;articles&lt;/span&gt;
 
   &lt;span class='n'&gt;category_selected&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;params&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:cat&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
