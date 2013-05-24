@@ -5,8 +5,8 @@
         <description>Movebits - Movebits</description>
         <link>http://movebits.github.io</link>
         <link>http://movebits.github.io</link>
-        <lastBuildDate>2013-05-24T08:52:43-04:00</lastBuildDate>
-        <pubDate>2013-05-24T08:52:43-04:00</pubDate>
+        <lastBuildDate>2013-05-24T08:54:08-04:00</lastBuildDate>
+        <pubDate>2013-05-24T08:54:08-04:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -563,7 +563,19 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id='active_record_associations__slide_10'&gt;Active Record Associations - Slide 10&lt;/h2&gt;
 
-&lt;p&gt;has_many, belongs_to, has_many :through acts_as_tree - &lt;a href='https://github.com/amerine/acts_as_tree'&gt;https://github.com/amerine/acts_as_tree&lt;/a&gt;, a bit dated but still functional &lt;a href='http://railscasts.com/episodes/162-tree-based-navigation?view=asciicast'&gt;http://railscasts.com/episodes/162-tree-based-navigation?view=asciicast&lt;/a&gt; awesome_nested_set (nested set) - &lt;a href='https://github.com/collectiveidea/awesome_nested_set/'&gt;https://github.com/collectiveidea/awesome_nested_set/&lt;/a&gt; polymorphic associations many_to_many with behaviour STI - single table inheritance see ‘Rails Recipes’ book, or ‘Rails Cookbook’ (contain many of these examples)&lt;/p&gt;
+&lt;p&gt;has_many, belongs_to, has_many :through&lt;/p&gt;
+
+&lt;p&gt;acts_as_tree - &lt;a href='https://github.com/amerine/acts_as_tree'&gt;https://github.com/amerine/acts_as_tree&lt;/a&gt;, a bit dated but still functional &lt;a href='http://railscasts.com/episodes/162-tree-based-navigation?view=asciicast'&gt;http://railscasts.com/episodes/162-tree-based-navigation?view=asciicast&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;awesome_nested_set (nested set) - &lt;a href='https://github.com/collectiveidea/awesome_nested_set/'&gt;https://github.com/collectiveidea/awesome_nested_set/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;polymorphic associations&lt;/p&gt;
+
+&lt;p&gt;many_to_many with behaviour&lt;/p&gt;
+
+&lt;p&gt;STI - single table inheritance&lt;/p&gt;
+
+&lt;p&gt;see ‘Rails Recipes’ book, or ‘Rails Cookbook’ (contain many of these examples)&lt;/p&gt;
 
 &lt;h2 id='storing_flexible_data_nosql__slide_11'&gt;Storing Flexible Data, NoSQL - Slide 11&lt;/h2&gt;
 
