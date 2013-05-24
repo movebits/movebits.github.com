@@ -5,8 +5,8 @@
         <description>Movebits - Movebits</description>
         <link>http://movebits.github.io</link>
         <link>http://movebits.github.io</link>
-        <lastBuildDate>2013-05-23T17:18:17-04:00</lastBuildDate>
-        <pubDate>2013-05-23T17:18:17-04:00</pubDate>
+        <lastBuildDate>2013-05-24T07:38:00-04:00</lastBuildDate>
+        <pubDate>2013-05-24T07:38:00-04:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -150,41 +150,284 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id='routes'&gt;Routes&lt;/h3&gt;
 
+&lt;p&gt;RESTful routes creation with &lt;code&gt;resources :products&lt;/code&gt; vs. using &lt;code&gt;match&lt;/code&gt; (catch-all for get and post), &lt;code&gt;get&lt;/code&gt;, &lt;code&gt;post&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Catch params (&lt;code&gt;params[:id]&lt;/code&gt;) with &lt;code&gt;match &amp;quot;store/categories/(:id)&amp;quot; =&amp;gt; &amp;quot;store#categories&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+
 &lt;h3 id='route_nesting'&gt;Route nesting&lt;/h3&gt;
 
+&lt;p&gt;Nest routes with e.g.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='n'&gt;resources&lt;/span&gt; &lt;span class='ss'&gt;:blogs&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+  &lt;span class='n'&gt;resources&lt;/span&gt; &lt;span class='ss'&gt;:posts&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;
+
+&lt;span class='n'&gt;resources&lt;/span&gt; &lt;span class='ss'&gt;:posts&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+  &lt;span class='n'&gt;resources&lt;/span&gt; &lt;span class='ss'&gt;:comments&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;There is an article by Jamis Buck (37 Signals) about not nesting routes deeply - see &lt;a href='http://weblog.jamisbuck.org/2007/2/5/nesting-resources'&gt;http://weblog.jamisbuck.org/2007/2/5/nesting-resources&lt;/a&gt;. See also Rails Guides routing - &lt;a href='http://guides.rubyonrails.org/routing.html'&gt;http://guides.rubyonrails.org/routing.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Specifically &lt;a href='http://guides.rubyonrails.org/routing.html#crud-verbs-and-actions'&gt;http://guides.rubyonrails.org/routing.html#crud-verbs-and-actions&lt;/a&gt; e.g. &lt;code&gt;resources :photos&lt;/code&gt; command creates 7 different routes on the Photos controller:&lt;/p&gt;
+&lt;table&gt;
+  &lt;tbody&gt;&lt;tr&gt;
+    &lt;th&gt;&lt;span class='caps'&gt;HTTP&lt;/span&gt; Verb &lt;/th&gt;
+    &lt;th&gt;Path            &lt;/th&gt;
+    &lt;th&gt;action &lt;/th&gt;
+    &lt;th&gt;used for                                   &lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;span class='caps'&gt;GET&lt;/span&gt;          &lt;/td&gt;
+    &lt;td&gt;/photos           &lt;/td&gt;
+    &lt;td&gt;index    &lt;/td&gt;
+    &lt;td&gt;display a list of all photos                 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;span class='caps'&gt;GET&lt;/span&gt;          &lt;/td&gt;
+    &lt;td&gt;/photos/new       &lt;/td&gt;
+    &lt;td&gt;new      &lt;/td&gt;
+    &lt;td&gt;return an &lt;span class='caps'&gt;HTML&lt;/span&gt; form for creating a new photo &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;span class='caps'&gt;POST&lt;/span&gt;         &lt;/td&gt;
+    &lt;td&gt;/photos           &lt;/td&gt;
+    &lt;td&gt;create   &lt;/td&gt;
+    &lt;td&gt;create a new photo                           &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;span class='caps'&gt;GET&lt;/span&gt;          &lt;/td&gt;
+    &lt;td&gt;/photos/:id       &lt;/td&gt;
+    &lt;td&gt;show     &lt;/td&gt;
+    &lt;td&gt;display a specific photo                     &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;span class='caps'&gt;GET&lt;/span&gt;          &lt;/td&gt;
+    &lt;td&gt;/photos/:id/edit  &lt;/td&gt;
+    &lt;td&gt;edit     &lt;/td&gt;
+    &lt;td&gt;return an &lt;span class='caps'&gt;HTML&lt;/span&gt; form for editing a photo      &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;span class='caps'&gt;PUT&lt;/span&gt;          &lt;/td&gt;
+    &lt;td&gt;/photos/:id       &lt;/td&gt;
+    &lt;td&gt;update   &lt;/td&gt;
+    &lt;td&gt;update a specific photo                      &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;span class='caps'&gt;DELETE&lt;/span&gt;       &lt;/td&gt;
+    &lt;td&gt;/photos/:id       &lt;/td&gt;
+    &lt;td&gt;destroy  &lt;/td&gt;
+    &lt;td&gt;delete a specific photo                      &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
 &lt;h3 id='rake_routes'&gt;rake routes&lt;/h3&gt;
 
-&lt;h3 id='nested_routes_blog_example'&gt;Nested routes Blog example&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;rake routes&lt;/code&gt; command shows all available routes and their named paths, which can be used to e.g. generate link helpers &lt;code&gt;edit_post_comment&lt;/code&gt; refers and generates the route &lt;code&gt;GET    /posts/:post_id/comments/:id/edit(.:format)&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;             blog_posts GET    /blogs/:blog_id/posts(.:format)             {:action=&amp;gt;&amp;quot;index&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+                        POST   /blogs/:blog_id/posts(.:format)             {:action=&amp;gt;&amp;quot;create&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+          new_blog_post GET    /blogs/:blog_id/posts/new(.:format)         {:action=&amp;gt;&amp;quot;new&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+         edit_blog_post GET    /blogs/:blog_id/posts/:id/edit(.:format)    {:action=&amp;gt;&amp;quot;edit&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+              blog_post GET    /blogs/:blog_id/posts/:id(.:format)         {:action=&amp;gt;&amp;quot;show&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+                        PUT    /blogs/:blog_id/posts/:id(.:format)         {:action=&amp;gt;&amp;quot;update&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+                        DELETE /blogs/:blog_id/posts/:id(.:format)         {:action=&amp;gt;&amp;quot;destroy&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+                  blogs GET    /blogs(.:format)                            {:action=&amp;gt;&amp;quot;index&amp;quot;, :controller=&amp;gt;&amp;quot;blogs&amp;quot;}
+                        POST   /blogs(.:format)                            {:action=&amp;gt;&amp;quot;create&amp;quot;, :controller=&amp;gt;&amp;quot;blogs&amp;quot;}
+               new_blog GET    /blogs/new(.:format)                        {:action=&amp;gt;&amp;quot;new&amp;quot;, :controller=&amp;gt;&amp;quot;blogs&amp;quot;}
+              edit_blog GET    /blogs/:id/edit(.:format)                   {:action=&amp;gt;&amp;quot;edit&amp;quot;, :controller=&amp;gt;&amp;quot;blogs&amp;quot;}
+                   blog GET    /blogs/:id(.:format)                        {:action=&amp;gt;&amp;quot;show&amp;quot;, :controller=&amp;gt;&amp;quot;blogs&amp;quot;}
+                        PUT    /blogs/:id(.:format)                        {:action=&amp;gt;&amp;quot;update&amp;quot;, :controller=&amp;gt;&amp;quot;blogs&amp;quot;}
+                        DELETE /blogs/:id(.:format)                        {:action=&amp;gt;&amp;quot;destroy&amp;quot;, :controller=&amp;gt;&amp;quot;blogs&amp;quot;}
+          post_comments GET    /posts/:post_id/comments(.:format)          {:action=&amp;gt;&amp;quot;index&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+                        POST   /posts/:post_id/comments(.:format)          {:action=&amp;gt;&amp;quot;create&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+       new_post_comment GET    /posts/:post_id/comments/new(.:format)      {:action=&amp;gt;&amp;quot;new&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+      edit_post_comment GET    /posts/:post_id/comments/:id/edit(.:format) {:action=&amp;gt;&amp;quot;edit&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+           post_comment GET    /posts/:post_id/comments/:id(.:format)      {:action=&amp;gt;&amp;quot;show&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+                        PUT    /posts/:post_id/comments/:id(.:format)      {:action=&amp;gt;&amp;quot;update&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+                        DELETE /posts/:post_id/comments/:id(.:format)      {:action=&amp;gt;&amp;quot;destroy&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+                  posts GET    /posts(.:format)                            {:action=&amp;gt;&amp;quot;index&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+                        POST   /posts(.:format)                            {:action=&amp;gt;&amp;quot;create&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+               new_post GET    /posts/new(.:format)                        {:action=&amp;gt;&amp;quot;new&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+              edit_post GET    /posts/:id/edit(.:format)                   {:action=&amp;gt;&amp;quot;edit&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+                   post GET    /posts/:id(.:format)                        {:action=&amp;gt;&amp;quot;show&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+                        PUT    /posts/:id(.:format)                        {:action=&amp;gt;&amp;quot;update&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+                        DELETE /posts/:id(.:format)                        {:action=&amp;gt;&amp;quot;destroy&amp;quot;, :controller=&amp;gt;&amp;quot;posts&amp;quot;}
+               comments GET    /comments(.:format)                         {:action=&amp;gt;&amp;quot;index&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+                        POST   /comments(.:format)                         {:action=&amp;gt;&amp;quot;create&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+            new_comment GET    /comments/new(.:format)                     {:action=&amp;gt;&amp;quot;new&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+           edit_comment GET    /comments/:id/edit(.:format)                {:action=&amp;gt;&amp;quot;edit&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+                comment GET    /comments/:id(.:format)                     {:action=&amp;gt;&amp;quot;show&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+                        PUT    /comments/:id(.:format)                     {:action=&amp;gt;&amp;quot;update&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}
+                        DELETE /comments/:id(.:format)                     {:action=&amp;gt;&amp;quot;destroy&amp;quot;, :controller=&amp;gt;&amp;quot;comments&amp;quot;}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id='spa_single_page_apps__slide_4'&gt;SPA Single Page Apps - Slide 4&lt;/h2&gt;
 
 &lt;h3 id='example_of_standard_jquery_ajax_use_in_rails'&gt;Example of Standard jQuery/ Ajax use in Rails&lt;/h3&gt;
 
+&lt;p&gt;Good jQuery reference for Ajax etc. - &lt;a href='http://jqfundamentals.com/'&gt;http://jqfundamentals.com/&lt;/a&gt;&lt;/p&gt;
+
 &lt;h4 id='standard_get_request'&gt;Standard GET Request&lt;/h4&gt;
+
+&lt;p&gt;e.g. a music track selector widget:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='selector widget' src='/assets/get_tracks.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;Html page includes a selector box, where jQuery code references their 2 id fields &lt;code&gt;categories&lt;/code&gt; and &lt;code&gt;sort&lt;/code&gt;:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='nx'&gt;script&lt;/span&gt; &lt;span class='nx'&gt;type&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class='nx'&gt;jQuery&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+
+        &lt;span class='c1'&gt;// prod_select ajax get function&lt;/span&gt;
+        &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;#get_category&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;live&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='kd'&gt;function&lt;/span&gt; &lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+            &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;get&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;/home/articles&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;&lt;span class='nx'&gt;cat&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;#categories&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;val&lt;/span&gt;&lt;span class='p'&gt;(),&lt;/span&gt; &lt;span class='nx'&gt;sort&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;#sort&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;val&lt;/span&gt;&lt;span class='p'&gt;()},&lt;/span&gt; &lt;span class='kc'&gt;null&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;script&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+            &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='kc'&gt;false&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+        &lt;span class='p'&gt;});&lt;/span&gt;
+    &lt;span class='p'&gt;});&lt;/span&gt;
+
+&lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='err'&gt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then in the &lt;code&gt;home_controller&lt;/code&gt; &lt;code&gt;articles&lt;/code&gt; method, we refer to an articles.js &lt;code&gt;articles.js.erb&lt;/code&gt; file, which has the same name as the &lt;code&gt;articles&lt;/code&gt; method (we could call it something else but would have to specify the name in the &lt;code&gt;respond_to&lt;/code&gt; block):&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;articles&lt;/span&gt;
+
+  &lt;span class='n'&gt;category_selected&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;params&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:cat&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
+  
+  &lt;span class='n'&gt;sort_by&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;params&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:sort&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
+
+  &lt;span class='c1'&gt;#do some magic with the params...&lt;/span&gt;
+
+  &lt;span class='n'&gt;respond_to&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='nb'&gt;format&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
+    &lt;span class='nb'&gt;format&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;html&lt;/span&gt;
+    &lt;span class='nb'&gt;format&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;js&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;articles.js.erb&lt;/code&gt; file, inserting a count (through erb) and a partial into the page, updating the displayed list of articles (songs):&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='cm'&gt;/* comment */&lt;/span&gt;
+&lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;#articles_count&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;html&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;&amp;lt;%= pluralize(@articles.count, &amp;#39;Article&amp;#39;) %&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+&lt;span class='cm'&gt;/* comment */&lt;/span&gt;
+&lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;#articles&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;html&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;&amp;lt;%= escape_javascript(render(&amp;#39;home/article&amp;#39;)) %&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;render(&amp;#39;home/article&amp;#39;)&lt;/code&gt; refers to a partial &lt;code&gt;_article.html.erb&lt;/code&gt; that Rails inserts into the page:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;&lt;span class='nt'&gt;&amp;lt;table&amp;gt;&lt;/span&gt;
+  &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;% @articles.each do |post| -%&amp;gt;
+     &lt;span class='nt'&gt;&amp;lt;tr&amp;gt;&lt;/span&gt;
+     &lt;span class='nt'&gt;&amp;lt;td&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class='na'&gt;href =&lt;/span&gt;&lt;span class='err'&gt; &lt;/span&gt;&lt;span class='s'&gt;&amp;quot;/articles/&amp;lt;%= post.id %&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class='na'&gt;src=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;/assets/note.png&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;/&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
+     &lt;span class='nt'&gt;&amp;lt;td&amp;gt;&amp;lt;h2&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class='na'&gt;href=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;/articles/&amp;lt;%= post.id %&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;strong&amp;gt;&lt;/span&gt;&lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= post.name %&amp;gt; - &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= h truncate(post.description_en, :length =&amp;gt; 80) %&amp;gt;&lt;span class='nt'&gt;&amp;lt;/strong&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+
+      &lt;span class='nt'&gt;&amp;lt;p&lt;/span&gt; &lt;span class='na'&gt;class=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;summary&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;&lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= post.description_en %&amp;gt;&lt;span class='nt'&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+
+    &lt;span class='nt'&gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
+    &lt;span class='nt'&gt;&amp;lt;/tr&amp;gt;&lt;/span&gt;
+  &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;% end -%&amp;gt;
+&lt;span class='nt'&gt;&amp;lt;/table&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4 id='standard_post_request'&gt;Standard POST Request&lt;/h4&gt;
+
+&lt;p&gt;Same workflow as GET Request (see above) but jQuery Ajax helper would be using &lt;code&gt;$.post&lt;/code&gt; instead of &lt;code&gt;$.get&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Another way to create &lt;code&gt;Ajax POST&lt;/code&gt; requests automatically is to use the &lt;code&gt;:remote =&amp;gt; true&lt;/code&gt; helper in Rails forms:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;&lt;span class='err'&gt;&amp;lt;&lt;/span&gt;% form_tag products_path, :remote =&amp;gt; true do %&amp;gt;
+  &lt;span class='nt'&gt;&amp;lt;p&amp;gt;&lt;/span&gt;
+    &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= text_field_tag :search, params[:search] %&amp;gt;
+    &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= submit_tag &amp;quot;Search&amp;quot;, :name =&amp;gt; nil %&amp;gt;
+  &lt;span class='nt'&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class='err'&gt;&amp;lt;&lt;/span&gt;% end %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Rails Guides simple Ajax example &lt;a href='http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html#a-simple-example'&gt;http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html#a-simple-example&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;There are also various Railscasts.com articles on Ajax/ jQuery that might be a useful - see &lt;a href='http://railscasts.com/episodes/240-search-sort-paginate-with-ajax?view=asciicast'&gt;http://railscasts.com/episodes/240-search-sort-paginate-with-ajax?view=asciicast&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id='emberjs'&gt;Ember.js&lt;/h3&gt;
 
+&lt;p&gt;Refer to Ember.js Guides - see intro video &lt;a href='http://emberjs.com/guides/'&gt;http://emberjs.com/guides/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Ember.js Routing magic - see &lt;a href='http://emberjs.com/guides/routing/defining-your-routes/'&gt;http://emberjs.com/guides/routing/defining-your-routes/&lt;/a&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;App&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;Router&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;map&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='k'&gt;this&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;resource&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;posts&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;this&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;route&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;new&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='p'&gt;});&lt;/span&gt;
+&lt;span class='p'&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;creates the following routes:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;URL&lt;/th&gt;
+    &lt;th&gt;Route Name&lt;/th&gt;
+    &lt;th&gt;Controller&lt;/th&gt;
+    &lt;th&gt;Route&lt;/th&gt;
+    &lt;th&gt;Template&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;&lt;tr&gt;
+    &lt;td&gt;&lt;code&gt;/&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;index&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;IndexController&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;IndexRoute&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;index&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;N/A&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;posts&lt;/code&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;PostsController&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;PostsRoute&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;posts&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;code&gt;/posts&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;posts.index&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;PostsController&lt;/code&gt;&lt;br /&gt;↳&lt;code&gt;PostsIndexController&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;PostsRoute&lt;/code&gt;&lt;br /&gt;↳&lt;code&gt;PostsIndexRoute&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;posts&lt;/code&gt;&lt;br /&gt;↳&lt;code&gt;posts/index&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;code&gt;/posts/new&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;posts.new&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;PostsController&lt;/code&gt;&lt;br /&gt;↳&lt;code&gt;PostsNewController&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;PostsRoute&lt;/code&gt;&lt;br /&gt;↳&lt;code&gt;PostsNewRoute&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;posts&lt;/code&gt;&lt;br /&gt;↳&lt;code&gt;posts/new&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
 &lt;h3 id='angularjs'&gt;Angular.js&lt;/h3&gt;
+
+&lt;p&gt;See - &lt;a href='http://angularjs.org'&gt;Angularjs.org&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id='rails_console__slide_8'&gt;Rails Console - Slide 8&lt;/h2&gt;
 
 &lt;h3 id='console'&gt;console&lt;/h3&gt;
 
+&lt;p&gt;Rails console in production - &lt;code&gt;rails c RAILS_ENV=production&lt;/code&gt; (in dev mode you can leave out the RAILS_ENV part).&lt;/p&gt;
+
 &lt;h3 id='pry'&gt;Pry&lt;/h3&gt;
+
+&lt;p&gt;Enhanced Rails console with data introspection and breakpoints etc. - &lt;a href='http://railscasts.com/episodes/280-pry-with-rails?view=asciicast'&gt;http://railscasts.com/episodes/280-pry-with-rails?view=asciicast&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;also &lt;span&gt;https://github.com/pry/pry&lt;/span&gt;)https://github.com/pry/pry&lt;/p&gt;
 
 &lt;h2 id='admins__rails_admin_active_admin_netzke__slide_19'&gt;Admins - Rails Admin, Active Admin, Netzke - Slide 19&lt;/h2&gt;
 
 &lt;h3 id='rais_admin'&gt;Rais Admin&lt;/h3&gt;
 
+&lt;p&gt;Rails admin - &lt;a href='https://github.com/sferik/rails_admin'&gt;https://github.com/sferik/rails_admin&lt;/a&gt; and link to demo &lt;a href='http://rails-admin-tb.herokuapp.com/'&gt;http://rails-admin-tb.herokuapp.com/&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3 id='active_admin'&gt;Active Admin&lt;/h3&gt;
+
+&lt;p&gt;Active Admin - &lt;a href='http://activeadmin.info/'&gt;http://activeadmin.info/&lt;/a&gt;, Github &lt;a href='https://github.com/gregbell/active_admin'&gt;https://github.com/gregbell/active_admin&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id='netzke'&gt;Netzke&lt;/h3&gt;
 
+&lt;p&gt;Creates Grids based on ExtJS - &lt;a href='http://netzke.org/'&gt;http://netzke.org/&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2 id='authentication_authorization__slide_5'&gt;Authentication, Authorization - Slide 5&lt;/h2&gt;
 
-&lt;h3 id='autentication__devise_sorcery'&gt;Autentication - Devise, Sorcery&lt;/h3&gt;
+&lt;h3 id='autentication__sorcery_devise'&gt;Autentication - Sorcery, Devise&lt;/h3&gt;
+
+&lt;p&gt;Authentication with Sorcery - &lt;a href='https://github.com/NoamB/sorcery'&gt;https://github.com/NoamB/sorcery&lt;/a&gt;, see Wiki install and configuration &lt;a href='https://github.com/NoamB/sorcery/wiki'&gt;https://github.com/NoamB/sorcery/wiki&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Authentication with Devise - &lt;a href='https://github.com/plataformatec/devise'&gt;https://github.com/plataformatec/devise&lt;/a&gt;, see Wiki &lt;a href='https://github.com/plataformatec/devise/wiki'&gt;https://github.com/plataformatec/devise/wiki&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id='authorization__cancan_example'&gt;Authorization - CanCan Example&lt;/h3&gt;
+
+&lt;p&gt;Authorization with CanCan - &lt;a href='https://github.com/ryanb/cancan'&gt;https://github.com/ryanb/cancan&lt;/a&gt;, CanCan Wiki &lt;a href='https://github.com/ryanb/cancan/wiki'&gt;https://github.com/ryanb/cancan/wiki&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id='active_record_finder__slide_7'&gt;Active Record Finder - Slide 7&lt;/h2&gt;
 

@@ -258,41 +258,284 @@ column’s value.</code></pre>
 
 <h3 id='routes'>Routes</h3>
 
+<p>RESTful routes creation with <code>resources :products</code> vs. using <code>match</code> (catch-all for get and post), <code>get</code>, <code>post</code>.</p>
+
+<p>Catch params (<code>params[:id]</code>) with <code>match &quot;store/categories/(:id)&quot; =&gt; &quot;store#categories&quot;</code>.</p>
+
 <h3 id='route_nesting'>Route nesting</h3>
 
+<p>Nest routes with e.g.</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>resources</span> <span class='ss'>:blogs</span> <span class='k'>do</span>
+  <span class='n'>resources</span> <span class='ss'>:posts</span>
+<span class='k'>end</span>
+
+<span class='n'>resources</span> <span class='ss'>:posts</span> <span class='k'>do</span>
+  <span class='n'>resources</span> <span class='ss'>:comments</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p>There is an article by Jamis Buck (37 Signals) about not nesting routes deeply - see <a href='http://weblog.jamisbuck.org/2007/2/5/nesting-resources'>http://weblog.jamisbuck.org/2007/2/5/nesting-resources</a>. See also Rails Guides routing - <a href='http://guides.rubyonrails.org/routing.html'>http://guides.rubyonrails.org/routing.html</a></p>
+
+<p>Specifically <a href='http://guides.rubyonrails.org/routing.html#crud-verbs-and-actions'>http://guides.rubyonrails.org/routing.html#crud-verbs-and-actions</a> e.g. <code>resources :photos</code> command creates 7 different routes on the Photos controller:</p>
+<table>
+  <tbody><tr>
+    <th><span class='caps'>HTTP</span> Verb </th>
+    <th>Path            </th>
+    <th>action </th>
+    <th>used for                                   </th>
+  </tr>
+  <tr>
+    <td><span class='caps'>GET</span>          </td>
+    <td>/photos           </td>
+    <td>index    </td>
+    <td>display a list of all photos                 </td>
+  </tr>
+  <tr>
+    <td><span class='caps'>GET</span>          </td>
+    <td>/photos/new       </td>
+    <td>new      </td>
+    <td>return an <span class='caps'>HTML</span> form for creating a new photo </td>
+  </tr>
+  <tr>
+    <td><span class='caps'>POST</span>         </td>
+    <td>/photos           </td>
+    <td>create   </td>
+    <td>create a new photo                           </td>
+  </tr>
+  <tr>
+    <td><span class='caps'>GET</span>          </td>
+    <td>/photos/:id       </td>
+    <td>show     </td>
+    <td>display a specific photo                     </td>
+  </tr>
+  <tr>
+    <td><span class='caps'>GET</span>          </td>
+    <td>/photos/:id/edit  </td>
+    <td>edit     </td>
+    <td>return an <span class='caps'>HTML</span> form for editing a photo      </td>
+  </tr>
+  <tr>
+    <td><span class='caps'>PUT</span>          </td>
+    <td>/photos/:id       </td>
+    <td>update   </td>
+    <td>update a specific photo                      </td>
+  </tr>
+  <tr>
+    <td><span class='caps'>DELETE</span>       </td>
+    <td>/photos/:id       </td>
+    <td>destroy  </td>
+    <td>delete a specific photo                      </td>
+  </tr>
+</tbody></table>
 <h3 id='rake_routes'>rake routes</h3>
 
-<h3 id='nested_routes_blog_example'>Nested routes Blog example</h3>
+<p><code>rake routes</code> command shows all available routes and their named paths, which can be used to e.g. generate link helpers <code>edit_post_comment</code> refers and generates the route <code>GET    /posts/:post_id/comments/:id/edit(.:format)</code>:</p>
+
+<pre><code>             blog_posts GET    /blogs/:blog_id/posts(.:format)             {:action=&gt;&quot;index&quot;, :controller=&gt;&quot;posts&quot;}
+                        POST   /blogs/:blog_id/posts(.:format)             {:action=&gt;&quot;create&quot;, :controller=&gt;&quot;posts&quot;}
+          new_blog_post GET    /blogs/:blog_id/posts/new(.:format)         {:action=&gt;&quot;new&quot;, :controller=&gt;&quot;posts&quot;}
+         edit_blog_post GET    /blogs/:blog_id/posts/:id/edit(.:format)    {:action=&gt;&quot;edit&quot;, :controller=&gt;&quot;posts&quot;}
+              blog_post GET    /blogs/:blog_id/posts/:id(.:format)         {:action=&gt;&quot;show&quot;, :controller=&gt;&quot;posts&quot;}
+                        PUT    /blogs/:blog_id/posts/:id(.:format)         {:action=&gt;&quot;update&quot;, :controller=&gt;&quot;posts&quot;}
+                        DELETE /blogs/:blog_id/posts/:id(.:format)         {:action=&gt;&quot;destroy&quot;, :controller=&gt;&quot;posts&quot;}
+                  blogs GET    /blogs(.:format)                            {:action=&gt;&quot;index&quot;, :controller=&gt;&quot;blogs&quot;}
+                        POST   /blogs(.:format)                            {:action=&gt;&quot;create&quot;, :controller=&gt;&quot;blogs&quot;}
+               new_blog GET    /blogs/new(.:format)                        {:action=&gt;&quot;new&quot;, :controller=&gt;&quot;blogs&quot;}
+              edit_blog GET    /blogs/:id/edit(.:format)                   {:action=&gt;&quot;edit&quot;, :controller=&gt;&quot;blogs&quot;}
+                   blog GET    /blogs/:id(.:format)                        {:action=&gt;&quot;show&quot;, :controller=&gt;&quot;blogs&quot;}
+                        PUT    /blogs/:id(.:format)                        {:action=&gt;&quot;update&quot;, :controller=&gt;&quot;blogs&quot;}
+                        DELETE /blogs/:id(.:format)                        {:action=&gt;&quot;destroy&quot;, :controller=&gt;&quot;blogs&quot;}
+          post_comments GET    /posts/:post_id/comments(.:format)          {:action=&gt;&quot;index&quot;, :controller=&gt;&quot;comments&quot;}
+                        POST   /posts/:post_id/comments(.:format)          {:action=&gt;&quot;create&quot;, :controller=&gt;&quot;comments&quot;}
+       new_post_comment GET    /posts/:post_id/comments/new(.:format)      {:action=&gt;&quot;new&quot;, :controller=&gt;&quot;comments&quot;}
+      edit_post_comment GET    /posts/:post_id/comments/:id/edit(.:format) {:action=&gt;&quot;edit&quot;, :controller=&gt;&quot;comments&quot;}
+           post_comment GET    /posts/:post_id/comments/:id(.:format)      {:action=&gt;&quot;show&quot;, :controller=&gt;&quot;comments&quot;}
+                        PUT    /posts/:post_id/comments/:id(.:format)      {:action=&gt;&quot;update&quot;, :controller=&gt;&quot;comments&quot;}
+                        DELETE /posts/:post_id/comments/:id(.:format)      {:action=&gt;&quot;destroy&quot;, :controller=&gt;&quot;comments&quot;}
+                  posts GET    /posts(.:format)                            {:action=&gt;&quot;index&quot;, :controller=&gt;&quot;posts&quot;}
+                        POST   /posts(.:format)                            {:action=&gt;&quot;create&quot;, :controller=&gt;&quot;posts&quot;}
+               new_post GET    /posts/new(.:format)                        {:action=&gt;&quot;new&quot;, :controller=&gt;&quot;posts&quot;}
+              edit_post GET    /posts/:id/edit(.:format)                   {:action=&gt;&quot;edit&quot;, :controller=&gt;&quot;posts&quot;}
+                   post GET    /posts/:id(.:format)                        {:action=&gt;&quot;show&quot;, :controller=&gt;&quot;posts&quot;}
+                        PUT    /posts/:id(.:format)                        {:action=&gt;&quot;update&quot;, :controller=&gt;&quot;posts&quot;}
+                        DELETE /posts/:id(.:format)                        {:action=&gt;&quot;destroy&quot;, :controller=&gt;&quot;posts&quot;}
+               comments GET    /comments(.:format)                         {:action=&gt;&quot;index&quot;, :controller=&gt;&quot;comments&quot;}
+                        POST   /comments(.:format)                         {:action=&gt;&quot;create&quot;, :controller=&gt;&quot;comments&quot;}
+            new_comment GET    /comments/new(.:format)                     {:action=&gt;&quot;new&quot;, :controller=&gt;&quot;comments&quot;}
+           edit_comment GET    /comments/:id/edit(.:format)                {:action=&gt;&quot;edit&quot;, :controller=&gt;&quot;comments&quot;}
+                comment GET    /comments/:id(.:format)                     {:action=&gt;&quot;show&quot;, :controller=&gt;&quot;comments&quot;}
+                        PUT    /comments/:id(.:format)                     {:action=&gt;&quot;update&quot;, :controller=&gt;&quot;comments&quot;}
+                        DELETE /comments/:id(.:format)                     {:action=&gt;&quot;destroy&quot;, :controller=&gt;&quot;comments&quot;}</code></pre>
 
 <h2 id='spa_single_page_apps__slide_4'>SPA Single Page Apps - Slide 4</h2>
 
 <h3 id='example_of_standard_jquery_ajax_use_in_rails'>Example of Standard jQuery/ Ajax use in Rails</h3>
 
+<p>Good jQuery reference for Ajax etc. - <a href='http://jqfundamentals.com/'>http://jqfundamentals.com/</a></p>
+
 <h4 id='standard_get_request'>Standard GET Request</h4>
+
+<p>e.g. a music track selector widget:</p>
+
+<p><img alt='selector widget' src='/assets/get_tracks.png' /></p>
+
+<p>Html page includes a selector box, where jQuery code references their 2 id fields <code>categories</code> and <code>sort</code>:</p>
+<div class='highlight'><pre><code class='javascript'><span class='o'>&lt;</span><span class='nx'>script</span> <span class='nx'>type</span><span class='o'>=</span><span class='s2'>&quot;text/javascript&quot;</span><span class='o'>&gt;</span>
+
+    <span class='nx'>jQuery</span><span class='p'>(</span><span class='kd'>function</span><span class='p'>(</span><span class='nx'>$</span><span class='p'>)</span> <span class='p'>{</span>
+
+        <span class='c1'>// prod_select ajax get function</span>
+        <span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;#get_category&#39;</span><span class='p'>).</span><span class='nx'>live</span><span class='p'>(</span><span class='s1'>&#39;click&#39;</span><span class='p'>,</span><span class='kd'>function</span> <span class='p'>()</span> <span class='p'>{</span>
+            <span class='nx'>$</span><span class='p'>.</span><span class='nx'>get</span><span class='p'>(</span><span class='s2'>&quot;/home/articles&quot;</span><span class='p'>,</span> <span class='p'>{</span><span class='nx'>cat</span><span class='o'>:</span> <span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;#categories&#39;</span><span class='p'>).</span><span class='nx'>val</span><span class='p'>(),</span> <span class='nx'>sort</span><span class='o'>:</span> <span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;#sort&#39;</span><span class='p'>).</span><span class='nx'>val</span><span class='p'>()},</span> <span class='kc'>null</span><span class='p'>,</span> <span class='s1'>&#39;script&#39;</span><span class='p'>);</span>
+            <span class='k'>return</span> <span class='kc'>false</span><span class='p'>;</span>
+        <span class='p'>});</span>
+    <span class='p'>});</span>
+
+<span class='o'>&lt;</span><span class='err'>/script&gt;</span>
+</code></pre></div>
+<p>Then in the <code>home_controller</code> <code>articles</code> method, we refer to an articles.js <code>articles.js.erb</code> file, which has the same name as the <code>articles</code> method (we could call it something else but would have to specify the name in the <code>respond_to</code> block):</p>
+<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>articles</span>
+
+  <span class='n'>category_selected</span> <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:cat</span><span class='o'>]</span>
+  
+  <span class='n'>sort_by</span> <span class='o'>=</span> <span class='n'>params</span><span class='o'>[</span><span class='ss'>:sort</span><span class='o'>]</span>
+
+  <span class='c1'>#do some magic with the params...</span>
+
+  <span class='n'>respond_to</span> <span class='k'>do</span> <span class='o'>|</span><span class='nb'>format</span><span class='o'>|</span>
+    <span class='nb'>format</span><span class='o'>.</span><span class='n'>html</span>
+    <span class='nb'>format</span><span class='o'>.</span><span class='n'>js</span>
+  <span class='k'>end</span>
+<span class='k'>end</span>
+</code></pre></div>
+<p><code>articles.js.erb</code> file, inserting a count (through erb) and a partial into the page, updating the displayed list of articles (songs):</p>
+<div class='highlight'><pre><code class='javascript'><span class='cm'>/* comment */</span>
+<span class='nx'>$</span><span class='p'>(</span><span class='s2'>&quot;#articles_count&quot;</span><span class='p'>).</span><span class='nx'>html</span><span class='p'>(</span><span class='s2'>&quot;&lt;%= pluralize(@articles.count, &#39;Article&#39;) %&gt;&quot;</span><span class='p'>);</span>
+
+<span class='cm'>/* comment */</span>
+<span class='nx'>$</span><span class='p'>(</span><span class='s2'>&quot;#articles&quot;</span><span class='p'>).</span><span class='nx'>html</span><span class='p'>(</span><span class='s2'>&quot;&lt;%= escape_javascript(render(&#39;home/article&#39;)) %&gt;&quot;</span><span class='p'>);</span>
+</code></pre></div>
+<p>The <code>render(&#39;home/article&#39;)</code> refers to a partial <code>_article.html.erb</code> that Rails inserts into the page:</p>
+<div class='highlight'><pre><code class='html'><span class='nt'>&lt;table&gt;</span>
+  <span class='err'>&lt;</span>% @articles.each do |post| -%&gt;
+     <span class='nt'>&lt;tr&gt;</span>
+     <span class='nt'>&lt;td&gt;&lt;a</span> <span class='na'>href =</span><span class='err'> </span><span class='s'>&quot;/articles/&lt;%= post.id %&gt;&quot;</span><span class='nt'>&gt;&lt;img</span> <span class='na'>src=</span><span class='s'>&quot;/assets/note.png&quot;</span><span class='nt'>/&gt;&lt;/a&gt;&lt;/td&gt;</span>
+     <span class='nt'>&lt;td&gt;&lt;h2&gt;&lt;a</span> <span class='na'>href=</span><span class='s'>&quot;/articles/&lt;%= post.id %&gt;&quot;</span><span class='nt'>&gt;&lt;strong&gt;</span><span class='err'>&lt;</span>%= post.name %&gt; - <span class='err'>&lt;</span>%= h truncate(post.description_en, :length =&gt; 80) %&gt;<span class='nt'>&lt;/strong&gt;&lt;/a&gt;&lt;/h2&gt;</span>
+
+      <span class='nt'>&lt;p</span> <span class='na'>class=</span><span class='s'>&quot;summary&quot;</span><span class='nt'>&gt;</span><span class='err'>&lt;</span>%= post.description_en %&gt;<span class='nt'>&lt;/p&gt;</span>
+
+    <span class='nt'>&lt;/td&gt;</span>
+    <span class='nt'>&lt;/tr&gt;</span>
+  <span class='err'>&lt;</span>% end -%&gt;
+<span class='nt'>&lt;/table&gt;</span>
+</code></pre></div>
+<h4 id='standard_post_request'>Standard POST Request</h4>
+
+<p>Same workflow as GET Request (see above) but jQuery Ajax helper would be using <code>$.post</code> instead of <code>$.get</code>.</p>
+
+<p>Another way to create <code>Ajax POST</code> requests automatically is to use the <code>:remote =&gt; true</code> helper in Rails forms:</p>
+<div class='highlight'><pre><code class='html'><span class='err'>&lt;</span>% form_tag products_path, :remote =&gt; true do %&gt;
+  <span class='nt'>&lt;p&gt;</span>
+    <span class='err'>&lt;</span>%= text_field_tag :search, params[:search] %&gt;
+    <span class='err'>&lt;</span>%= submit_tag &quot;Search&quot;, :name =&gt; nil %&gt;
+  <span class='nt'>&lt;/p&gt;</span>
+<span class='err'>&lt;</span>% end %&gt;
+</code></pre></div>
+<p>Rails Guides simple Ajax example <a href='http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html#a-simple-example'>http://edgeguides.rubyonrails.org/working_with_javascript_in_rails.html#a-simple-example</a></p>
+
+<p>There are also various Railscasts.com articles on Ajax/ jQuery that might be a useful - see <a href='http://railscasts.com/episodes/240-search-sort-paginate-with-ajax?view=asciicast'>http://railscasts.com/episodes/240-search-sort-paginate-with-ajax?view=asciicast</a></p>
 
 <h3 id='emberjs'>Ember.js</h3>
 
+<p>Refer to Ember.js Guides - see intro video <a href='http://emberjs.com/guides/'>http://emberjs.com/guides/</a></p>
+
+<p>Ember.js Routing magic - see <a href='http://emberjs.com/guides/routing/defining-your-routes/'>http://emberjs.com/guides/routing/defining-your-routes/</a></p>
+<div class='highlight'><pre><code class='javascript'><span class='nx'>App</span><span class='p'>.</span><span class='nx'>Router</span><span class='p'>.</span><span class='nx'>map</span><span class='p'>(</span><span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+  <span class='k'>this</span><span class='p'>.</span><span class='nx'>resource</span><span class='p'>(</span><span class='s1'>&#39;posts&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+    <span class='k'>this</span><span class='p'>.</span><span class='nx'>route</span><span class='p'>(</span><span class='s1'>&#39;new&#39;</span><span class='p'>);</span>
+  <span class='p'>});</span>
+<span class='p'>});</span>
+</code></pre></div>
+<p>creates the following routes:</p>
+<table>
+  <thead>
+  <tr>
+    <th>URL</th>
+    <th>Route Name</th>
+    <th>Controller</th>
+    <th>Route</th>
+    <th>Template</th>
+  </tr>
+  </thead>
+  <tbody><tr>
+    <td><code>/</code></td>
+    <td><code>index</code></td>
+    <td><code>IndexController</code></td>
+    <td><code>IndexRoute</code></td>
+    <td><code>index</code></td>
+  </tr>
+  <tr>
+    <td>N/A</td>
+    <td><code>posts</code><sup>1</sup></td>
+    <td><code>PostsController</code></td>
+    <td><code>PostsRoute</code></td>
+    <td><code>posts</code></td>
+  </tr>
+  <tr>
+    <td><code>/posts</code></td>
+    <td><code>posts.index</code></td>
+    <td><code>PostsController</code><br />↳<code>PostsIndexController</code></td>
+    <td><code>PostsRoute</code><br />↳<code>PostsIndexRoute</code></td>
+    <td><code>posts</code><br />↳<code>posts/index</code></td>
+  </tr>
+  <tr>
+    <td><code>/posts/new</code></td>
+    <td><code>posts.new</code></td>
+    <td><code>PostsController</code><br />↳<code>PostsNewController</code></td>
+    <td><code>PostsRoute</code><br />↳<code>PostsNewRoute</code></td>
+    <td><code>posts</code><br />↳<code>posts/new</code></td>
+  </tr>
+</tbody></table>
 <h3 id='angularjs'>Angular.js</h3>
+
+<p>See - <a href='http://angularjs.org'>Angularjs.org</a></p>
 
 <h2 id='rails_console__slide_8'>Rails Console - Slide 8</h2>
 
 <h3 id='console'>console</h3>
 
+<p>Rails console in production - <code>rails c RAILS_ENV=production</code> (in dev mode you can leave out the RAILS_ENV part).</p>
+
 <h3 id='pry'>Pry</h3>
+
+<p>Enhanced Rails console with data introspection and breakpoints etc. - <a href='http://railscasts.com/episodes/280-pry-with-rails?view=asciicast'>http://railscasts.com/episodes/280-pry-with-rails?view=asciicast</a></p>
+
+<p>also <span>https://github.com/pry/pry</span>)https://github.com/pry/pry</p>
 
 <h2 id='admins__rails_admin_active_admin_netzke__slide_19'>Admins - Rails Admin, Active Admin, Netzke - Slide 19</h2>
 
 <h3 id='rais_admin'>Rais Admin</h3>
 
+<p>Rails admin - <a href='https://github.com/sferik/rails_admin'>https://github.com/sferik/rails_admin</a> and link to demo <a href='http://rails-admin-tb.herokuapp.com/'>http://rails-admin-tb.herokuapp.com/</a></p>
+
 <h3 id='active_admin'>Active Admin</h3>
+
+<p>Active Admin - <a href='http://activeadmin.info/'>http://activeadmin.info/</a>, Github <a href='https://github.com/gregbell/active_admin'>https://github.com/gregbell/active_admin</a></p>
 
 <h3 id='netzke'>Netzke</h3>
 
+<p>Creates Grids based on ExtJS - <a href='http://netzke.org/'>http://netzke.org/</a></p>
+
 <h2 id='authentication_authorization__slide_5'>Authentication, Authorization - Slide 5</h2>
 
-<h3 id='autentication__devise_sorcery'>Autentication - Devise, Sorcery</h3>
+<h3 id='autentication__sorcery_devise'>Autentication - Sorcery, Devise</h3>
+
+<p>Authentication with Sorcery - <a href='https://github.com/NoamB/sorcery'>https://github.com/NoamB/sorcery</a>, see Wiki install and configuration <a href='https://github.com/NoamB/sorcery/wiki'>https://github.com/NoamB/sorcery/wiki</a></p>
+
+<p>Authentication with Devise - <a href='https://github.com/plataformatec/devise'>https://github.com/plataformatec/devise</a>, see Wiki <a href='https://github.com/plataformatec/devise/wiki'>https://github.com/plataformatec/devise/wiki</a></p>
 
 <h3 id='authorization__cancan_example'>Authorization - CanCan Example</h3>
+
+<p>Authorization with CanCan - <a href='https://github.com/ryanb/cancan'>https://github.com/ryanb/cancan</a>, CanCan Wiki <a href='https://github.com/ryanb/cancan/wiki'>https://github.com/ryanb/cancan/wiki</a></p>
 
 <h2 id='active_record_finder__slide_7'>Active Record Finder - Slide 7</h2>
 
