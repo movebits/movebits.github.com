@@ -5,8 +5,8 @@
         <description>Movebits - Movebits</description>
         <link>http://movebits.github.io</link>
         <link>http://movebits.github.io</link>
-        <lastBuildDate>2013-05-24T07:38:00-04:00</lastBuildDate>
-        <pubDate>2013-05-24T07:38:00-04:00</pubDate>
+        <lastBuildDate>2013-05-24T07:47:10-04:00</lastBuildDate>
+        <pubDate>2013-05-24T07:47:10-04:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -338,7 +338,11 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id='emberjs'&gt;Ember.js&lt;/h3&gt;
 
-&lt;p&gt;Refer to Ember.js Guides - see intro video &lt;a href='http://emberjs.com/guides/'&gt;http://emberjs.com/guides/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Refer to Ember.js Guides - see intro video &lt;a href='http://emberjs.com/guides/'&gt;http://emberjs.com/guides/&lt;/a&gt;, Github project with code &lt;a href='https://github.com/tildeio/bloggr-client'&gt;https://github.com/tildeio/bloggr-client&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Also Peepcode Episode on Ember - &lt;a href='https://peepcode.com/products/emberjs'&gt;https://peepcode.com/products/emberjs&lt;/a&gt;, an inofficial Github project with code (might work, it&amp;#8217;s a copy of Peepcode&amp;#8217;s commercial offering) &lt;a href='https://github.com/jordelver/peepcode-ember-js'&gt;https://github.com/jordelver/peepcode-ember-js&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Devmynd article on Ember.js - &lt;a href='http://www.devmynd.com/blog/2013-3-rails-ember-js'&gt;http://www.devmynd.com/blog/2013-3-rails-ember-js&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Ember.js Routing magic - see &lt;a href='http://emberjs.com/guides/routing/defining-your-routes/'&gt;http://emberjs.com/guides/routing/defining-your-routes/&lt;/a&gt;&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;App&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;Router&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;map&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
