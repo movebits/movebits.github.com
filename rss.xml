@@ -5,8 +5,8 @@
         <description>Movebits - Movebits</description>
         <link>http://movebits.github.io</link>
         <link>http://movebits.github.io</link>
-        <lastBuildDate>2013-05-24T08:49:55-04:00</lastBuildDate>
-        <pubDate>2013-05-24T08:49:55-04:00</pubDate>
+        <lastBuildDate>2013-05-24T08:52:43-04:00</lastBuildDate>
+        <pubDate>2013-05-24T08:52:43-04:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -532,7 +532,9 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;See Rails Guides article - &lt;a href='http://guides.rubyonrails.org/active_record_querying.html'&gt;http://guides.rubyonrails.org/active_record_querying.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id='search_scopes_devmynd_article__httpwwwdevmyndcomblog20133effectiverailspart2hidingactiverecord'&gt;Search scopes (Devmynd Article) - &lt;a href='http://www.devmynd.com/blog/2013-3-effective-rails-part-2-hiding-activerecord'&gt;http://www.devmynd.com/blog/2013-3-effective-rails-part-2-hiding-activerecord&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id='search_scopes'&gt;Search scopes&lt;/h3&gt;
+
+&lt;p&gt;Search scopes (Devmynd Article) - &lt;a href='http://www.devmynd.com/blog/2013-3-effective-rails-part-2-hiding-activerecord'&gt;http://www.devmynd.com/blog/2013-3-effective-rails-part-2-hiding-activerecord&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Hiding Actice Record behind search scopes:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='c1'&gt;# app/models/order.rb&lt;/span&gt;
