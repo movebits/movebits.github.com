@@ -4,7 +4,7 @@
  <title>Movebits</title>
  <link href="http://movebits.github.io/" rel="self"/>
  <link href="http://movebits.github.io"/>
- <updated>2013-05-24T10:36:15-04:00</updated>
+ <updated>2013-05-24T10:37:26-04:00</updated>
  <id>http://movebits.github.io</id>
  <author>
    <name>Movebits</name>
@@ -626,7 +626,7 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 &lt;span class='n'&gt;namespace&lt;/span&gt; &lt;span class='ss'&gt;:db&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
   &lt;span class='no'&gt;DATA_DIRECTORY&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='no'&gt;File&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;join&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='no'&gt;Rails&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;root&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;lib&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;tasks&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;load_csv&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
   &lt;span class='n'&gt;namespace&lt;/span&gt; &lt;span class='ss'&gt;:load_data&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; 
-    &lt;span class='no'&gt;TABLES&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='sx'&gt;%w(organizations vendors products)&lt;/span&gt;
+    &lt;span class='no'&gt;TABLES&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='sx'&gt;%w(categories products)&lt;/span&gt;
     &lt;span class='c1'&gt;#MIN_USER_ID = 100    # Starting user id for the sample data&lt;/span&gt;
   
     &lt;span class='n'&gt;desc&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;Load data&amp;quot;&lt;/span&gt;

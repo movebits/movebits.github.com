@@ -729,7 +729,7 @@ column’s value.</code></pre>
 <span class='n'>namespace</span> <span class='ss'>:db</span> <span class='k'>do</span>
   <span class='no'>DATA_DIRECTORY</span> <span class='o'>=</span> <span class='no'>File</span><span class='o'>.</span><span class='n'>join</span><span class='p'>(</span><span class='no'>Rails</span><span class='o'>.</span><span class='n'>root</span><span class='p'>,</span> <span class='s2'>&quot;lib&quot;</span><span class='p'>,</span> <span class='s2'>&quot;tasks&quot;</span><span class='p'>,</span> <span class='s2'>&quot;load_csv&quot;</span><span class='p'>)</span>
   <span class='n'>namespace</span> <span class='ss'>:load_data</span> <span class='k'>do</span> 
-    <span class='no'>TABLES</span> <span class='o'>=</span> <span class='sx'>%w(organizations vendors products)</span>
+    <span class='no'>TABLES</span> <span class='o'>=</span> <span class='sx'>%w(categories products)</span>
     <span class='c1'>#MIN_USER_ID = 100    # Starting user id for the sample data</span>
   
     <span class='n'>desc</span> <span class='s2'>&quot;Load data&quot;</span>
