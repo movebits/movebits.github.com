@@ -5,8 +5,8 @@
         <description>Movebits - Movebits</description>
         <link>http://movebits.github.io</link>
         <link>http://movebits.github.io</link>
-        <lastBuildDate>2013-05-24T07:49:36-04:00</lastBuildDate>
-        <pubDate>2013-05-24T07:49:36-04:00</pubDate>
+        <lastBuildDate>2013-05-24T08:49:55-04:00</lastBuildDate>
+        <pubDate>2013-05-24T08:49:55-04:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -407,7 +407,7 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Enhanced Rails console with data introspection and breakpoints etc. - &lt;a href='http://railscasts.com/episodes/280-pry-with-rails?view=asciicast'&gt;http://railscasts.com/episodes/280-pry-with-rails?view=asciicast&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;also &lt;span&gt;https://github.com/pry/pry&lt;/span&gt;)https://github.com/pry/pry&lt;/p&gt;
+&lt;p&gt;also &lt;a href='https://github.com/pry/pry'&gt;https://github.com/pry/pry&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id='admins__rails_admin_active_admin_netzke__slide_19'&gt;Admins - Rails Admin, Active Admin, Netzke - Slide 19&lt;/h2&gt;
 
@@ -435,42 +435,274 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Authorization with CanCan - &lt;a href='https://github.com/ryanb/cancan'&gt;https://github.com/ryanb/cancan&lt;/a&gt;, CanCan Wiki &lt;a href='https://github.com/ryanb/cancan/wiki'&gt;https://github.com/ryanb/cancan/wiki&lt;/a&gt;&lt;/p&gt;
 
+&lt;p&gt;CanCan Ability model class example:&lt;/p&gt;
+
+&lt;p&gt;See also Railscasts episodes on CanCan - &lt;a href='http://railscasts.com/episodes/192-authorization-with-cancan?view=asciicast'&gt;http://railscasts.com/episodes/192-authorization-with-cancan?view=asciicast&lt;/a&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;Ability&lt;/span&gt;
+  &lt;span class='kp'&gt;include&lt;/span&gt; &lt;span class='ss'&gt;CanCan&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:Ability&lt;/span&gt;
+  &lt;span class='kp'&gt;include&lt;/span&gt; &lt;span class='no'&gt;ApplicationHelper&lt;/span&gt;
+
+  &lt;span class='c1'&gt;#def initialize(user)&lt;/span&gt;
+    &lt;span class='c1'&gt;# Define abilities for the passed in user here. For example:&lt;/span&gt;
+    &lt;span class='c1'&gt;#&lt;/span&gt;
+    &lt;span class='c1'&gt;#   user ||= User.new # guest user (not logged in)&lt;/span&gt;
+    &lt;span class='c1'&gt;#   if user.admin?&lt;/span&gt;
+    &lt;span class='c1'&gt;#     can :manage, :all&lt;/span&gt;
+    &lt;span class='c1'&gt;#   else&lt;/span&gt;
+    &lt;span class='c1'&gt;#     can :read, :all&lt;/span&gt;
+    &lt;span class='c1'&gt;#   end&lt;/span&gt;
+    &lt;span class='c1'&gt;#&lt;/span&gt;
+    &lt;span class='c1'&gt;# The first argument to `can` is the action you are giving the user &lt;/span&gt;
+    &lt;span class='c1'&gt;# permission to do.&lt;/span&gt;
+    &lt;span class='c1'&gt;# If you pass :manage it will apply to every action. Other common actions&lt;/span&gt;
+    &lt;span class='c1'&gt;# here are :read, :create, :update and :destroy.&lt;/span&gt;
+    &lt;span class='c1'&gt;#&lt;/span&gt;
+    &lt;span class='c1'&gt;# The second argument is the resource the user can perform the action on. &lt;/span&gt;
+    &lt;span class='c1'&gt;# If you pass :all it will apply to every resource. Otherwise pass a Ruby&lt;/span&gt;
+    &lt;span class='c1'&gt;# class of the resource.&lt;/span&gt;
+    &lt;span class='c1'&gt;#&lt;/span&gt;
+    &lt;span class='c1'&gt;# The third argument is an optional hash of conditions to further filter the&lt;/span&gt;
+    &lt;span class='c1'&gt;# objects.&lt;/span&gt;
+    &lt;span class='c1'&gt;# For example, here the user can only update published articles.&lt;/span&gt;
+    &lt;span class='c1'&gt;#&lt;/span&gt;
+    &lt;span class='c1'&gt;#   can :update, Article, :published =&amp;gt; true&lt;/span&gt;
+    &lt;span class='c1'&gt;#&lt;/span&gt;
+    &lt;span class='c1'&gt;# See the wiki for details:&lt;/span&gt;
+    &lt;span class='c1'&gt;# https://github.com/ryanb/cancan/wiki/Defining-Abilities&lt;/span&gt;
+  &lt;span class='c1'&gt;#end&lt;/span&gt;
+
+  &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;initialize&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;user&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+    &lt;span class='vi'&gt;@user&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;user&lt;/span&gt; &lt;span class='o'&gt;||&lt;/span&gt; &lt;span class='no'&gt;User&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;new&lt;/span&gt; &lt;span class='c1'&gt;# for guest&lt;/span&gt;
+    &lt;span class='vi'&gt;@user&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;roles&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;each&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;role&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt; &lt;span class='nb'&gt;send&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;role&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;name&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;to_sym&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='vi'&gt;@organizations&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='no'&gt;Organization&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;all&lt;/span&gt;
+
+    &lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='vi'&gt;@user&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;roles&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;size&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;
+      &lt;span class='n'&gt;can&lt;/span&gt; &lt;span class='ss'&gt;:read&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:all&lt;/span&gt; &lt;span class='c1'&gt;#for guest without roles&lt;/span&gt;
+    &lt;span class='k'&gt;end&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+  &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;account&lt;/span&gt;
+
+    &lt;span class='c1'&gt;#can [:manage], [Organization, User, CustomerRecord, AdminRecord, Vendor, Product, PriceList, BankRecord, CreditCardRecord, Category, Page, Location, Order, LineItem, OrderTransaction, Access]&lt;/span&gt;
+    &lt;span class='n'&gt;can&lt;/span&gt; &lt;span class='ss'&gt;:manage&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:all&lt;/span&gt;
+    &lt;span class='c1'&gt;#exceptions_to_rules&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+  &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;exceptions_to_rules&lt;/span&gt;
+    &lt;span class='n'&gt;cannot&lt;/span&gt; &lt;span class='ss'&gt;:destroy&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Organization&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+  &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;management&lt;/span&gt;
+    &lt;span class='n'&gt;can&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:read&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:create&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:update&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='no'&gt;Organization&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;User&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;CustomerRecord&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;AdminRecord&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Vendor&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Product&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;PriceList&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;BankRecord&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;CreditCardRecord&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Location&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Order&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;OrderTransaction&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Access&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
+    &lt;span class='n'&gt;can&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:read&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='no'&gt;Category&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;LineItem&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+  &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;management_division&lt;/span&gt;
+    &lt;span class='n'&gt;can&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:read&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:create&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:update&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='no'&gt;Organization&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;User&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;CustomerRecord&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;AdminRecord&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Vendor&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Product&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;PriceList&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;BankRecord&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;CreditCardRecord&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Category&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Location&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Order&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;LineItem&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;OrderTransaction&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Access&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
+    &lt;span class='n'&gt;can&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:read&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='no'&gt;Category&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;LineItem&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+  &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;staff&lt;/span&gt;
+    &lt;span class='n'&gt;can&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:read&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:create&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:update&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='no'&gt;User&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;CustomerRecord&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
+    &lt;span class='n'&gt;can&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:read&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='no'&gt;Organization&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Category&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;PriceList&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;AdminRecord&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='no'&gt;Vendor&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+
+&lt;span class='k'&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The in &lt;code&gt;user.rb&lt;/code&gt; model you create the helper method &lt;code&gt;role?&lt;/code&gt; which helps pass in associated Role table pulling out all the associated roles (many-to-one relationship between User and Role), which &lt;code&gt;ability.rb&lt;/code&gt; then pull in with the &lt;code&gt;initialize&lt;/code&gt; method on demand for each user, referring to each&amp;#8217;s abilities (picking them up from the methods below e.g. &lt;code&gt;def management&lt;/code&gt; &lt;code&gt;def staff&lt;/code&gt; etc.).&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt; &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;role?&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;role&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+    &lt;span class='n'&gt;roles&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;map&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt; &lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;name&lt;/span&gt;&lt;span class='p'&gt;}&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;include?&lt;/span&gt; &lt;span class='n'&gt;role&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;to_s&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally (taken from Railscast Article) if you refer (with logged in user) with the &lt;code&gt;can?&lt;/code&gt; helper method in views to the abilities of the user, it filters out what is allowed (CanCan automatically creates this ability on the controllers already):&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;&lt;span class='nt'&gt;&amp;lt;p&amp;gt;&lt;/span&gt;
+  &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;% if can? :update, @article %&amp;gt;
+    &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= link_to &amp;quot;Edit&amp;quot;, edit_article_path(@article) %&amp;gt; |
+  &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;% end %&amp;gt;
+  &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;% if can? :destroy, @article %&amp;gt;
+    &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= link_to &amp;quot;Destroy&amp;quot;, @article, :method =&amp;gt; :delete, :confirm =&amp;gt; &amp;quot;Are you sure?&amp;quot; %&amp;gt; |
+  &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;% end %&amp;gt;
+  &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= link_to &amp;quot;Back to Articles&amp;quot;, articles_path %&amp;gt;
+&lt;span class='nt'&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id='active_record_finder__slide_7'&gt;Active Record Finder - Slide 7&lt;/h2&gt;
 
 &lt;h3 id='where'&gt;Where&lt;/h3&gt;
 
-&lt;h3 id='arel__nested_scopes'&gt;Arel - nested scopes&lt;/h3&gt;
+&lt;p&gt;See Rails Guides article - &lt;a href='http://guides.rubyonrails.org/active_record_querying.html'&gt;http://guides.rubyonrails.org/active_record_querying.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id='search_scopes_devmynd_article'&gt;Search scopes (Devmynd Article)&lt;/h3&gt;
+&lt;h3 id='search_scopes_devmynd_article__httpwwwdevmyndcomblog20133effectiverailspart2hidingactiverecord'&gt;Search scopes (Devmynd Article) - &lt;a href='http://www.devmynd.com/blog/2013-3-effective-rails-part-2-hiding-activerecord'&gt;http://www.devmynd.com/blog/2013-3-effective-rails-part-2-hiding-activerecord&lt;/a&gt;&lt;/h3&gt;
 
+&lt;p&gt;Hiding Actice Record behind search scopes:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='c1'&gt;# app/models/order.rb&lt;/span&gt;
+&lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;Order&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='ss'&gt;ActiveRecord&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:Base&lt;/span&gt;
+
+  &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nc'&gt;self&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='nf'&gt;recent_open_orders_for_customer&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;customer&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;page&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;size&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='mi'&gt;20&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+    &lt;span class='nb'&gt;open&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;for_customer&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;customer&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;by_recency&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;paged&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;page&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;size&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;to_a&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+  &lt;span class='n'&gt;scope&lt;/span&gt; &lt;span class='ss'&gt;:open&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='n'&gt;where&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;status&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;open&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='n'&gt;scope&lt;/span&gt; &lt;span class='ss'&gt;:for_customer&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;customer&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='n'&gt;where&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;customer&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='n'&gt;customer&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='n'&gt;scope&lt;/span&gt; &lt;span class='ss'&gt;:by_recency&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='n'&gt;order&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;created_at DESC&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='n'&gt;scope&lt;/span&gt; &lt;span class='ss'&gt;:paged&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;page&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;size&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='mi'&gt;20&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='n'&gt;offset&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;size&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;limit&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;size&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
+
+&lt;span class='k'&gt;end&lt;/span&gt;
+
+&lt;span class='c1'&gt;# app/controllers/orders_controller.rb&lt;/span&gt;
+&lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;OrdersController&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='no'&gt;ApplicationController&lt;/span&gt;
+
+  &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;index&lt;/span&gt;
+    &lt;span class='vi'&gt;@orders&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='no'&gt;Order&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;recent_open_orders_for_customer&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;
+      &lt;span class='n'&gt;current_customer&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;params&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:page&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;params&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='ss'&gt;:page_size&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+&lt;span class='k'&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id='active_record_associations__slide_10'&gt;Active Record Associations - Slide 10&lt;/h2&gt;
 
-&lt;h3 id='various'&gt;various&lt;/h3&gt;
+&lt;p&gt;has_many, belongs_to, has_many :through acts_as_tree - &lt;a href='https://github.com/amerine/acts_as_tree'&gt;https://github.com/amerine/acts_as_tree&lt;/a&gt;, a bit dated but still functional &lt;a href='http://railscasts.com/episodes/162-tree-based-navigation?view=asciicast'&gt;http://railscasts.com/episodes/162-tree-based-navigation?view=asciicast&lt;/a&gt; awesome_nested_set (nested set) - &lt;a href='https://github.com/collectiveidea/awesome_nested_set/'&gt;https://github.com/collectiveidea/awesome_nested_set/&lt;/a&gt; polymorphic associations many_to_many with behaviour STI - single table inheritance see ‘Rails Recipes’ book, or ‘Rails Cookbook’ (contain many of these examples)&lt;/p&gt;
 
 &lt;h2 id='storing_flexible_data_nosql__slide_11'&gt;Storing Flexible Data, NoSQL - Slide 11&lt;/h2&gt;
 
-&lt;h3 id='various'&gt;various&lt;/h3&gt;
+&lt;p&gt;Postgres Hstore - see DevMynd article &lt;a href='http://www.devmynd.com/blog/2013-3-single-table-inheritance-hstore-lovely-combination'&gt;http://www.devmynd.com/blog/2013-3-single-table-inheritance-hstore-lovely-combination&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Active Record Postgres hstore gem - &lt;a href='https://github.com/engageis/activerecord-postgres-hstore'&gt;https://github.com/engageis/activerecord-postgres-hstore&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;hstore gem is built into Rails 4&lt;/p&gt;
+
+&lt;p&gt;Serializing flexible attributes into Rails, built into Rails 3.&lt;/p&gt;
+
+&lt;p&gt;Referring to PDF doc ‘Postgres Experts - Simplifying DB Design’ - &lt;a href='/assets/simple_db.pdf'&gt;simple_db.pdf&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Concepts from PDF:&lt;/p&gt;
+
+&lt;p&gt;EAV tables (‘Eavil table’) data blob (‘e-blob’)&lt;/p&gt;
 
 &lt;h3 id='mongodb__no_transactions'&gt;MongoDB - no transactions&lt;/h3&gt;
 
+&lt;p&gt;Faking out transactions in MongoDB - &lt;a href='http://blog.mongodb.org/post/7494240825/master-detail-transactions-in-mongodb'&gt;http://blog.mongodb.org/post/7494240825/master-detail-transactions-in-mongodb&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3 id='postgresql_93__fdw_integrating_redis_mongodb'&gt;Postgresql 9.3 - FDW (integrating Redis, MongoDB)&lt;/h3&gt;
 
+&lt;p&gt;PostgreSQL 9.3 beta: Federated databases and more - &lt;a href='http://lwn.net/Articles/550418/'&gt;http://lwn.net/Articles/550418/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;See &amp;#8216;Linking PostgreSQL to Redis&amp;#8217; in aricle.&lt;/p&gt;
+
 &lt;h3 id='postgresql_new_features'&gt;PostGresql new features&lt;/h3&gt;
+
+&lt;p&gt;links - &lt;a href='https://postgres.heroku.com/blog/past/2012/3/14/introducing_keyvalue_data_storage_in_heroku_postgres/'&gt;https://postgres.heroku.com/blog/past/2012/3/14/introducing_keyvalue_data_storage_in_heroku_postgres/&lt;/a&gt;, &lt;a href='http://postgres-bits.herokuapp.com/#1'&gt;Postgres the bits you haven&amp;#8217;t found&lt;/a&gt;, &lt;a href='http://plv8-pgconfeu.herokuapp.com/#1'&gt;Embracing the Web with JSON and V8&lt;/a&gt;, &lt;a href='http://schneems.com/post/19298469372/you-got-nosql-in-my-postgres-using-hstore-in-rails'&gt;NoSQL in Postgres intro&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id='rails_asset_pipeline_twitter_bootstrap_framework__slide_17'&gt;Rails Asset Pipeline, Twitter Bootstrap Framework - Slide 17&lt;/h2&gt;
 
 &lt;h3 id='asset_pipeline'&gt;Asset Pipeline&lt;/h3&gt;
 
+&lt;p&gt;Rails Guides to Asset Pipeline - &lt;a href='http://guides.rubyonrails.org/asset_pipeline.html'&gt;http://guides.rubyonrails.org/asset_pipeline.html&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3 id='integrating_bootstrap_less_sass'&gt;Integrating Bootstrap, Less, SASS&lt;/h3&gt;
+
+&lt;p&gt;Twitter Bootstrap - &lt;a href='http://twitter.github.io/bootstrap/'&gt;http://twitter.github.io/bootstrap/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Less - &lt;a href='http://lesscss.org/'&gt;http://lesscss.org/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;SASS - &lt;a href='http://sass-lang.com/'&gt;http://sass-lang.com/&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id='handling_data_csv_excel_pdf_generation__slide_16'&gt;Handling Data, CSV, Excel, PDF generation - Slide 16&lt;/h2&gt;
 
-&lt;h3 id='csv'&gt;CSV&lt;/h3&gt;
+&lt;h3 id='csv_import'&gt;CSV Import&lt;/h3&gt;
 
-&lt;h3 id='csv_upload'&gt;CSV upload&lt;/h3&gt;
+&lt;p&gt;Note - &lt;code&gt;db/seeds.rb&lt;/code&gt; is the preferred way to create db data e.g. &lt;code&gt;rake db:seed&lt;/code&gt; (or &lt;code&gt;rake db:seed RAILS_ENV=production&lt;/code&gt;), also &lt;a href='http://edgeguides.rubyonrails.org/migrations.html#migrations-and-seed-data'&gt;http://edgeguides.rubyonrails.org/migrations.html#migrations-and-seed-data&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;CSV import - create a &lt;code&gt;load_data.rake&lt;/code&gt; task in &lt;code&gt;lib/tasks&lt;/code&gt; directory of Rails app. Example of complex load task (one could split these up into separate rake tasks) - execute task with &lt;code&gt;rake db:load:load_data&lt;/code&gt;:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='c1'&gt;# Provide tasks to load and delete data.&lt;/span&gt;
+&lt;span class='nb'&gt;require&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;active_record&amp;#39;&lt;/span&gt;
+&lt;span class='nb'&gt;require&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;active_record/fixtures&amp;#39;&lt;/span&gt;
+
+&lt;span class='n'&gt;namespace&lt;/span&gt; &lt;span class='ss'&gt;:db&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt;
+  &lt;span class='no'&gt;DATA_DIRECTORY&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='no'&gt;File&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;join&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='no'&gt;Rails&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;root&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;lib&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;tasks&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;load_csv&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+  &lt;span class='n'&gt;namespace&lt;/span&gt; &lt;span class='ss'&gt;:load_data&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; 
+    &lt;span class='no'&gt;TABLES&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='sx'&gt;%w(organizations vendors products)&lt;/span&gt;
+    &lt;span class='c1'&gt;#MIN_USER_ID = 100    # Starting user id for the sample data&lt;/span&gt;
+  
+    &lt;span class='n'&gt;desc&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;Load data&amp;quot;&lt;/span&gt;
+    &lt;span class='n'&gt;task&lt;/span&gt; &lt;span class='ss'&gt;:load&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='ss'&gt;:environment&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;t&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
+      &lt;span class='nb'&gt;require&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;csv&amp;#39;&lt;/span&gt;
+      &lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;k&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;j&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;
+      &lt;span class='no'&gt;CSV&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;foreach&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;lib/tasks/load_csv/organizations.csv&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:headers&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='kp'&gt;true&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
+        &lt;span class='no'&gt;Organization&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;create&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;:name&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:created_at&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='no'&gt;Time&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;now&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:updated_at&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='no'&gt;Time&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;now&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+      &lt;span class='k'&gt;end&lt;/span&gt;
+      &lt;span class='nb'&gt;puts&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;organizations o.k.&amp;quot;&lt;/span&gt;
+      &lt;span class='no'&gt;CSV&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;foreach&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;lib/tasks/load_csv/vendors.csv&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:headers&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='kp'&gt;true&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
+        &lt;span class='no'&gt;Vendor&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;create&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;:name&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:organization_id&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;organization_id&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:created_at&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='no'&gt;Time&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;now&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:updated_at&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='no'&gt;Time&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;now&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+      &lt;span class='k'&gt;end&lt;/span&gt;
+      &lt;span class='nb'&gt;puts&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;vendors o.k.&amp;quot;&lt;/span&gt;
+      &lt;span class='no'&gt;CSV&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;foreach&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;lib/tasks/load_csv/categories.csv&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:headers&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='kp'&gt;true&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
+        &lt;span class='no'&gt;Category&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;create&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;:name&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:description&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;description&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:created_at&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='no'&gt;Time&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;now&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:updated_at&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='no'&gt;Time&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;now&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+      &lt;span class='k'&gt;end&lt;/span&gt;
+      &lt;span class='nb'&gt;puts&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;categories o.k.&amp;quot;&lt;/span&gt;
+      &lt;span class='no'&gt;CSV&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;foreach&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;lib/tasks/load_csv/users.csv&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:headers&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='kp'&gt;true&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
+        &lt;span class='no'&gt;User&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;create&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;:name&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:password&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;password&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:created_at&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='no'&gt;Time&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;now&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:updated_at&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='no'&gt;Time&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;now&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+      &lt;span class='k'&gt;end&lt;/span&gt;
+      &lt;span class='nb'&gt;puts&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;users o.k.&amp;quot;&lt;/span&gt;
+      &lt;span class='no'&gt;CSV&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;foreach&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;lib/tasks/load_csv/products.csv&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:headers&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='kp'&gt;true&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:col_sep&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
+        &lt;span class='no'&gt;Product&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;create&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ss'&gt;:organization_id&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:vendor_id&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:category_id&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; 
+        &lt;span class='ss'&gt;:made_in_canada&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='kp'&gt;false&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:available&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;available&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:manufacturer_nr&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;manufacturer_nr&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:country_id&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:upc_type&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;upc&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:upc&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;upc&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:dim_length&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;dim_length&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:dim_width&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;dim_width&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:dim_height&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;dim_height&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; 
+        &lt;span class='ss'&gt;:dim_weight&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;dim_weight&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:dim_length_package&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;dim_length_package&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:dim_width_package&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;dim_width_package&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; 
+        &lt;span class='ss'&gt;:dim_height_package&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;dim_height_package&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:dim_weight_package&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;dim_weight_package&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:factory_cost&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;factory_cost&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:effective_date&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;effective_date&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:suggested_selling&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;suggested_selling&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:hi_rez_image_en&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;hi_rez_image_en&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:hi_rez_image_fr&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;hi_rez_image_fr&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:alt_image1&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;alt_image1&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:alt_image1_text&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;alt_image1_text&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:alt_image2&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;alt_image2&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:alt_image2_text&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;alt_image2_text&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:alt_image3&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;alt_image3&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:alt_image3_text&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;alt_image3_text&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:swatch_image&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;swatch_image&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:description_en&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;description_en&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:description_fr&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;description_fr&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:marketing_copy_en&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;marketing_copy_en&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:marketing_copy_fr&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;marketing_copy_fr&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:bullet1_en&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;bullet1_en&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:bullet1_fr&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;bullet1_fr&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:bullet2_en&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;bullet2_en&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:bullet2_fr&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;bullet2_fr&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:bullet3_en&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;bullet3_en&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:bullet3_fr&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;bullet3_fr&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:bullet4_en&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;bullet4_en&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:bullet4_fr&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;bullet4_fr&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:bullet5_en&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;bullet5_en&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:bullet5_fr&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;row&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;bullet5_fr&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:shipping_package_price_id&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='ss'&gt;:created_at&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='no'&gt;Time&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;now&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ss'&gt;:updated_at&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='no'&gt;Time&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;now&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+      &lt;span class='k'&gt;end&lt;/span&gt;
+      &lt;span class='nb'&gt;puts&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;products o.k.&amp;quot;&lt;/span&gt;
+      
+    &lt;span class='k'&gt;end&lt;/span&gt;
+      
+    &lt;span class='n'&gt;desc&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;Remove data&amp;quot;&lt;/span&gt; 
+    &lt;span class='n'&gt;task&lt;/span&gt; &lt;span class='ss'&gt;:delete&lt;/span&gt; &lt;span class='o'&gt;=&amp;gt;&lt;/span&gt; &lt;span class='ss'&gt;:environment&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;t&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
+      &lt;span class='no'&gt;TABLES&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;each&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;t&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
+        &lt;span class='n'&gt;klass&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;t&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;classify&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;constantize&lt;/span&gt;
+        &lt;span class='c1'&gt;#id = klass == User ? &amp;quot;id&amp;quot; : &amp;quot;user_id&amp;quot;&lt;/span&gt;
+        &lt;span class='c1'&gt;#klass.delete_all(&amp;quot;#{id} &amp;gt;= #{MIN_USER_ID}&amp;quot;)&lt;/span&gt;
+        &lt;span class='n'&gt;klass&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;delete_all&lt;/span&gt;
+      &lt;span class='k'&gt;end&lt;/span&gt;
+    &lt;span class='k'&gt;end&lt;/span&gt;
+  &lt;span class='k'&gt;end&lt;/span&gt;
+
+&lt;span class='k'&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It reads in various CSV files in the &lt;code&gt;lib/tasks/load_csv&lt;/code&gt; directory, e.g. &lt;code&gt;categories.csv&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;name,description
+garden,garden products
+bath,bath products&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id='pdf_generation'&gt;PDF generation&lt;/h3&gt;
 
+&lt;p&gt;Prawn - &lt;a href='http://prawn.majesticseacreature.com/'&gt;http://prawn.majesticseacreature.com/&lt;/a&gt; and &lt;a href='https://github.com/prawnpdf/prawn'&gt;https://github.com/prawnpdf/prawn&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Or PDFKit - &lt;a href='https://github.com/pdfkit/pdfkit'&gt;https://github.com/pdfkit/pdfkit&lt;/a&gt;, also PDF toolkit (large collections of PDFs) - &lt;a href='http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/'&gt;http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Simple example with Prawn:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='nb'&gt;require&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;prawn&amp;#39;&lt;/span&gt;
+
+&lt;span class='ss'&gt;Prawn&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:Document&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;generate&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;hello.pdf&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;pdf&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
+  &lt;span class='n'&gt;pdf&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;text&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;Hello Prawn!&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h1 id='the_end'&gt;The End&lt;/h1&gt;</description>
                 <link>http://movebits.github.io/rails/2013/05/23/useful-rails-concepts</link>
                 <guid>http://movebits.github.io/rails/2013/05/23/useful-rails-concepts</guid>
