@@ -618,7 +618,7 @@ column’s value.</code></pre>
 
 <span class='k'>end</span>
 </code></pre></div>
-<p>In <code>user.rb</code> model you create the helper method <code>role?</code>, which helps pass in the associated roles table by collecting the role names (many-to-one relationship between User and Role), which <code>ability.rb</code> then refers to in the <code>initialize</code> method dynamically for each user (using <code>send()</code> to turn role name strings into methods, e.g. <code>def management</code> <code>def staff</code> etc.).</p>
+<p>In <code>user.rb</code> model you create the helper method <code>role?</code>, which helps pass in the associated roles table by collecting the role names (many-to-one relationship between Role and User), which <code>ability.rb</code> then refers to in the <code>initialize</code> method dynamically for each user (using <code>send()</code> to turn role name strings into methods, e.g. <code>def management</code> <code>def staff</code> etc.).</p>
 <div class='highlight'><pre><code class='ruby'> <span class='k'>def</span> <span class='nf'>role?</span><span class='p'>(</span><span class='n'>role</span><span class='p'>)</span>
     <span class='n'>roles</span><span class='o'>.</span><span class='n'>map</span> <span class='p'>{</span><span class='o'>|</span><span class='n'>s</span><span class='o'>|</span> <span class='n'>s</span><span class='o'>.</span><span class='n'>name</span><span class='p'>}</span><span class='o'>.</span><span class='n'>include?</span> <span class='n'>role</span><span class='o'>.</span><span class='n'>to_s</span>
   <span class='k'>end</span>
