@@ -4,7 +4,7 @@
  <title>Movebits</title>
  <link href="http://movebits.github.io/" rel="self"/>
  <link href="http://movebits.github.io"/>
- <updated>2013-05-24T08:54:08-04:00</updated>
+ <updated>2013-05-24T09:02:14-04:00</updated>
  <id>http://movebits.github.io</id>
  <author>
    <name>Movebits</name>
@@ -721,8 +721,7 @@ bath,bath products&lt;/code&gt;&lt;/pre&gt;
 &lt;span class='ss'&gt;Prawn&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;&lt;span class='ss'&gt;:Document&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;generate&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;hello.pdf&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='k'&gt;do&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;&lt;span class='n'&gt;pdf&lt;/span&gt;&lt;span class='o'&gt;|&lt;/span&gt;
   &lt;span class='n'&gt;pdf&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;text&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;Hello Prawn!&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
 &lt;span class='k'&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h1 id='the_end'&gt;The End&lt;/h1&gt;</content>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
  </entry>
  
  <entry>
