@@ -4,7 +4,7 @@
  <title>Movebits</title>
  <link href="http://movebits.github.io/" rel="self"/>
  <link href="http://movebits.github.io"/>
- <updated>2013-05-24T09:37:14-04:00</updated>
+ <updated>2013-05-24T09:39:21-04:00</updated>
  <id>http://movebits.github.io</id>
  <author>
    <name>Movebits</name>
@@ -606,7 +606,7 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;PostgreSQL 9.3 beta: Federated databases and more - &lt;a href='http://lwn.net/Articles/550418/'&gt;http://lwn.net/Articles/550418/&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;See &amp;#8216;Linking PostgreSQL to Redis&amp;#8217; in aricle.&lt;/p&gt;
+&lt;p&gt;See &amp;#8216;Linking PostgreSQL to Redis&amp;#8217; in article.&lt;/p&gt;
 
 &lt;h3 id='postgresql_new_features'&gt;PostGresql new features&lt;/h3&gt;
 
