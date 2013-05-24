@@ -4,7 +4,7 @@
  <title>Movebits</title>
  <link href="http://movebits.github.io/" rel="self"/>
  <link href="http://movebits.github.io"/>
- <updated>2013-05-24T10:37:26-04:00</updated>
+ <updated>2013-05-24T10:43:23-04:00</updated>
  <id>http://movebits.github.io</id>
  <author>
    <name>Movebits</name>
@@ -255,7 +255,7 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Good jQuery reference for Ajax etc. - &lt;a href='http://jqfundamentals.com/'&gt;http://jqfundamentals.com/&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id='standard_get_request'&gt;Standard GET Request&lt;/h4&gt;
+&lt;h4 id='ajax_get_request'&gt;Ajax GET Request&lt;/h4&gt;
 
 &lt;p&gt;e.g. a music track selector widget:&lt;/p&gt;
 
@@ -311,7 +311,7 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
   &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;% end -%&amp;gt;
 &lt;span class='nt'&gt;&amp;lt;/table&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h4 id='standard_post_request'&gt;Standard POST Request&lt;/h4&gt;
+&lt;h4 id='ajax_post_request'&gt;Ajax POST Request&lt;/h4&gt;
 
 &lt;p&gt;Same workflow as GET Request (see above) but jQuery Ajax helper would be using &lt;code&gt;$.post&lt;/code&gt; instead of &lt;code&gt;$.get&lt;/code&gt;.&lt;/p&gt;
 
