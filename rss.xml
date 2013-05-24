@@ -5,8 +5,8 @@
         <description>Movebits - Movebits</description>
         <link>http://movebits.github.io</link>
         <link>http://movebits.github.io</link>
-        <lastBuildDate>2013-05-24T07:47:10-04:00</lastBuildDate>
-        <pubDate>2013-05-24T07:47:10-04:00</pubDate>
+        <lastBuildDate>2013-05-24T07:49:36-04:00</lastBuildDate>
+        <pubDate>2013-05-24T07:49:36-04:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -344,6 +344,8 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Devmynd article on Ember.js - &lt;a href='http://www.devmynd.com/blog/2013-3-rails-ember-js'&gt;http://www.devmynd.com/blog/2013-3-rails-ember-js&lt;/a&gt;&lt;/p&gt;
 
+&lt;p&gt;Also - &lt;a href='http://www.embercasts.com/'&gt;http://www.embercasts.com/&lt;/a&gt; and &lt;a href='http://ember101.com/'&gt;http://ember101.com/&lt;/a&gt;&lt;/p&gt;
+
 &lt;p&gt;Ember.js Routing magic - see &lt;a href='http://emberjs.com/guides/routing/defining-your-routes/'&gt;http://emberjs.com/guides/routing/defining-your-routes/&lt;/a&gt;&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;App&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;Router&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;map&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
   &lt;span class='k'&gt;this&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;resource&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;posts&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
@@ -393,7 +395,7 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 &lt;/tbody&gt;&lt;/table&gt;
 &lt;h3 id='angularjs'&gt;Angular.js&lt;/h3&gt;
 
-&lt;p&gt;See - &lt;a href='http://angularjs.org'&gt;Angularjs.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;See - &lt;a href='http://angularjs.org'&gt;Angularjs.org&lt;/a&gt; and Angular video intros &lt;a href='http://www.egghead.io/'&gt;http://www.egghead.io/&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id='rails_console__slide_8'&gt;Rails Console - Slide 8&lt;/h2&gt;
 
