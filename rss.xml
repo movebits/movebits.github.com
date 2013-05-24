@@ -5,8 +5,8 @@
         <description>Movebits - Movebits</description>
         <link>http://movebits.github.io</link>
         <link>http://movebits.github.io</link>
-        <lastBuildDate>2013-05-24T09:33:18-04:00</lastBuildDate>
-        <pubDate>2013-05-24T09:33:18-04:00</pubDate>
+        <lastBuildDate>2013-05-24T09:37:14-04:00</lastBuildDate>
+        <pubDate>2013-05-24T09:37:14-04:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -308,12 +308,12 @@ column’s value.&lt;/code&gt;&lt;/pre&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The &lt;code&gt;render(&amp;#39;home/article&amp;#39;)&lt;/code&gt; refers to a partial &lt;code&gt;_article.html.erb&lt;/code&gt; that Rails inserts into the page:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;&lt;span class='nt'&gt;&amp;lt;table&amp;gt;&lt;/span&gt;
-  &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;% @articles.each do |post| -%&amp;gt;
+  &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;% @articles.each do |article| -%&amp;gt;
      &lt;span class='nt'&gt;&amp;lt;tr&amp;gt;&lt;/span&gt;
-     &lt;span class='nt'&gt;&amp;lt;td&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class='na'&gt;href =&lt;/span&gt;&lt;span class='err'&gt; &lt;/span&gt;&lt;span class='s'&gt;&amp;quot;/articles/&amp;lt;%= post.id %&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class='na'&gt;src=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;/assets/note.png&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;/&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
-     &lt;span class='nt'&gt;&amp;lt;td&amp;gt;&amp;lt;h2&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class='na'&gt;href=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;/articles/&amp;lt;%= post.id %&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;strong&amp;gt;&lt;/span&gt;&lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= post.name %&amp;gt; - &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= h truncate(post.description_en, :length =&amp;gt; 80) %&amp;gt;&lt;span class='nt'&gt;&amp;lt;/strong&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+     &lt;span class='nt'&gt;&amp;lt;td&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class='na'&gt;href =&lt;/span&gt;&lt;span class='err'&gt; &lt;/span&gt;&lt;span class='s'&gt;&amp;quot;/articles/&amp;lt;%= article.id %&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class='na'&gt;src=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;/assets/note.png&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;/&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
+     &lt;span class='nt'&gt;&amp;lt;td&amp;gt;&amp;lt;h2&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class='na'&gt;href=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;/articles/&amp;lt;%= article.id %&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&amp;lt;strong&amp;gt;&lt;/span&gt;&lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= article.name %&amp;gt; - &lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= h truncate(article.description_en, :length =&amp;gt; 80) %&amp;gt;&lt;span class='nt'&gt;&amp;lt;/strong&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
 
-      &lt;span class='nt'&gt;&amp;lt;p&lt;/span&gt; &lt;span class='na'&gt;class=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;summary&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;&lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= post.description_en %&amp;gt;&lt;span class='nt'&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+      &lt;span class='nt'&gt;&amp;lt;p&lt;/span&gt; &lt;span class='na'&gt;class=&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;summary&amp;quot;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;&lt;span class='err'&gt;&amp;lt;&lt;/span&gt;%= article.description_en %&amp;gt;&lt;span class='nt'&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
 
     &lt;span class='nt'&gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
     &lt;span class='nt'&gt;&amp;lt;/tr&amp;gt;&lt;/span&gt;

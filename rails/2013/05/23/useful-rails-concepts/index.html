@@ -416,12 +416,12 @@ column’s value.</code></pre>
 </code></pre></div>
 <p>The <code>render(&#39;home/article&#39;)</code> refers to a partial <code>_article.html.erb</code> that Rails inserts into the page:</p>
 <div class='highlight'><pre><code class='html'><span class='nt'>&lt;table&gt;</span>
-  <span class='err'>&lt;</span>% @articles.each do |post| -%&gt;
+  <span class='err'>&lt;</span>% @articles.each do |article| -%&gt;
      <span class='nt'>&lt;tr&gt;</span>
-     <span class='nt'>&lt;td&gt;&lt;a</span> <span class='na'>href =</span><span class='err'> </span><span class='s'>&quot;/articles/&lt;%= post.id %&gt;&quot;</span><span class='nt'>&gt;&lt;img</span> <span class='na'>src=</span><span class='s'>&quot;/assets/note.png&quot;</span><span class='nt'>/&gt;&lt;/a&gt;&lt;/td&gt;</span>
-     <span class='nt'>&lt;td&gt;&lt;h2&gt;&lt;a</span> <span class='na'>href=</span><span class='s'>&quot;/articles/&lt;%= post.id %&gt;&quot;</span><span class='nt'>&gt;&lt;strong&gt;</span><span class='err'>&lt;</span>%= post.name %&gt; - <span class='err'>&lt;</span>%= h truncate(post.description_en, :length =&gt; 80) %&gt;<span class='nt'>&lt;/strong&gt;&lt;/a&gt;&lt;/h2&gt;</span>
+     <span class='nt'>&lt;td&gt;&lt;a</span> <span class='na'>href =</span><span class='err'> </span><span class='s'>&quot;/articles/&lt;%= article.id %&gt;&quot;</span><span class='nt'>&gt;&lt;img</span> <span class='na'>src=</span><span class='s'>&quot;/assets/note.png&quot;</span><span class='nt'>/&gt;&lt;/a&gt;&lt;/td&gt;</span>
+     <span class='nt'>&lt;td&gt;&lt;h2&gt;&lt;a</span> <span class='na'>href=</span><span class='s'>&quot;/articles/&lt;%= article.id %&gt;&quot;</span><span class='nt'>&gt;&lt;strong&gt;</span><span class='err'>&lt;</span>%= article.name %&gt; - <span class='err'>&lt;</span>%= h truncate(article.description_en, :length =&gt; 80) %&gt;<span class='nt'>&lt;/strong&gt;&lt;/a&gt;&lt;/h2&gt;</span>
 
-      <span class='nt'>&lt;p</span> <span class='na'>class=</span><span class='s'>&quot;summary&quot;</span><span class='nt'>&gt;</span><span class='err'>&lt;</span>%= post.description_en %&gt;<span class='nt'>&lt;/p&gt;</span>
+      <span class='nt'>&lt;p</span> <span class='na'>class=</span><span class='s'>&quot;summary&quot;</span><span class='nt'>&gt;</span><span class='err'>&lt;</span>%= article.description_en %&gt;<span class='nt'>&lt;/p&gt;</span>
 
     <span class='nt'>&lt;/td&gt;</span>
     <span class='nt'>&lt;/tr&gt;</span>
