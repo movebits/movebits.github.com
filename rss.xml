@@ -5,10 +5,27 @@
         <description>Movebits - Movebits</description>
         <link>http://movebits.github.io</link>
         <link>http://movebits.github.io</link>
-        <lastBuildDate>2013-05-24T10:43:23-04:00</lastBuildDate>
-        <pubDate>2013-05-24T10:43:23-04:00</pubDate>
+        <lastBuildDate>2013-06-06T01:06:36-04:00</lastBuildDate>
+        <pubDate>2013-06-06T01:06:36-04:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>No soldering</title>
+                <description>&lt;h2 id='ha_no_soldering'&gt;Ha, no soldering&lt;/h2&gt;
+
+&lt;p&gt;USB port on Galaxy Note broke. Components snap in and out fairly easily without soldering, while replacing the part (sells for $10.- on Amazon).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Equipment used:
+Phillips Screw Driver
+Pry Tool
+Tweezer
+new USB replacement port&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe allowfullscreen='allowfullscreen' frameborder='0' height='315' src='http://www.youtube.com/embed/pD9R-YUT69Q' width='560'&gt; &lt;/iframe&gt;</description>
+                <link>http://movebits.github.io/mobile/2013/06/04/no-soldering</link>
+                <guid>http://movebits.github.io/mobile/2013/06/04/no-soldering</guid>
+                <pubDate>2013-06-04T00:00:00-04:00</pubDate>
+        </item>
 
         <item>
                 <title>Presentation - Useful Rails Concepts</title>
@@ -56,7 +73,7 @@
   &lt;span class='k'&gt;end&lt;/span&gt;
 &lt;span class='k'&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;then create a controller in &lt;code&gt;api/v1/products_controller&lt;/code&gt;, where the &lt;code&gt;before_filter :restric_access&lt;/code&gt; calls the token authentication, which is an API table cotaining a row with the SHA1 hash. If you navigate to e.g. &lt;code&gt;localhost/api/v1/products.json?access_token=1234d607b688b43841f1c6ccfe57a69e&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;then create a controller in &lt;code&gt;api/v1/products_controller&lt;/code&gt;, where the &lt;code&gt;before_filter :restrict_access&lt;/code&gt; calls the token authentication, which is an API table containing a row with the SHA1 hash. If you navigate to e.g. &lt;code&gt;localhost/api/v1/products.json?access_token=1234d607b688b43841f1c6ccfe57a69e&lt;/code&gt;&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='k'&gt;module&lt;/span&gt; &lt;span class='nn'&gt;Api&lt;/span&gt;
   &lt;span class='k'&gt;module&lt;/span&gt; &lt;span class='nn'&gt;V1&lt;/span&gt;
     &lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;ProductsController&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='no'&gt;ApplicationController&lt;/span&gt;

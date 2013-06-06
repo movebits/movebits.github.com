@@ -8,5 +8,6 @@ http://movebits.github.io/rss.xml
 http://movebits.github.io/sitemap.txt
 http://movebits.github.io/tags.html
 
+http://movebits.github.io/mobile/2013/06/04/no-soldering
 http://movebits.github.io/rails/2013/05/23/useful-rails-concepts
 http://movebits.github.io/work/2013/01/01/jekyll-example-page
