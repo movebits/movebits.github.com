@@ -1,3 +1,19 @@
+@media print {
+  .navbar {
+    display: none;
+  }
+  .pagination {
+    display: none;
+  }
+  .pagination + hr {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
+}
+
+
 /* Custom container */
 .container-narrow {
   margin: 0 auto;
