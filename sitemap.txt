@@ -1,4 +1,5 @@
 
+http://movebits.github.io/about.html
 http://movebits.github.io/archive.html
 http://movebits.github.io/atom.xml
 http://movebits.github.io/categories.html
